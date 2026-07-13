@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>See Yourself — Begin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap');
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#fdf6f0] dark:bg-[#1a1a2e] font-inter min-h-screen flex transition-colors duration-500">
+
+    <!-- Left Panel -->
+    <div class="hidden md:flex md:w-1/2 bg-[#6b3f2a] flex-col justify-between p-12">
+        <a href="/index.html" class="font-playfair text-2xl text-[#e8c4a0]">See Yourself</a>
+        <div>
+            <p class="font-playfair text-4xl italic text-white leading-relaxed mb-4">
+                "You don't have to be okay.<br/>You just have to show up."
+            </p>
+            <p class="text-[#c4956a] text-sm">Welcome back. We kept your space safe.</p>
+        </div>
+        <p class="text-[#c4956a] text-xs">© 2026 See Yourself</p>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="w-full md:w-1/2 flex flex-col justify-center px-8 md:px-16">
+        <div class="flex justify-end mb-8">
+            <button onclick="toggleTheme()" class="text-lg">🌙</button>
+        </div>
+
+        <h2 class="font-playfair text-4xl text-[#3d2314] dark:text-[#f0d9c0] mb-2">Welcome back</h2>
+        <p class="text-gray-400 text-sm mb-8 font-light">Your journal is waiting for you.</p>
+
+        <div id="error" class="hidden bg-rose-50 border border-rose-200 text-rose-600 text-sm px-4 py-3 rounded-xl mb-4"></div>
+
+        <div class="mb-4">
+            <label class="text-xs uppercase tracking-widest text-gray-400 mb-2 block">Email</label>
+            <input type="email" id="email" placeholder="you@example.com"
+                class="w-full bg-[#f5ede4] dark:bg-[#2a2a4a] dark:text-white border-none outline-none px-4 py-3 rounded-xl text-sm placeholder-gray-400 focus:ring-2 focus:ring-[#6b3f2a]"/>
+        </div>
+
+        <div class="mb-8">
+            <label class="text-xs uppercase tracking-widest text-gray-400 mb-2 block">Password</label>
+            <input type="password" id="password" placeholder="••••••••"
+                class="w-full bg-[#f5ede4] dark:bg-[#2a2a4a] dark:text-white border-none outline-none px-4 py-3 rounded-xl text-sm placeholder-gray-400 focus:ring-2 focus:ring-[#6b3f2a]"/>
+        </div>
+
+        <button onclick="login()"
+            class="w-full bg-[#6b3f2a] text-white py-3 rounded-full hover:bg-[#8b5e3c] transition text-sm font-medium mb-4">
+            Enter your space →
+        </button>
+
+        <p class="text-center text-sm text-gray-400">
+            New here? <a href="/register.html" class="text-[#6b3f2a] dark:text-[#e8c4a0] hover:underline">Create your space</a>
+        </p>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+        if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+
+        async function login() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('error');
+            errorDiv.classList.add('hidden');
+
+            const res = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('name', data.name);
+                window.location.href = '/entries.html';
+            } else {
+                errorDiv.classList.remove('hidden');
+                errorDiv.textContent = data.error;
+            }
+        }
+    </script>
+</body>
+</html>

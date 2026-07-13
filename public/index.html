@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>See Yourself</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap');
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#fdf6f0] dark:bg-[#1a1a2e] font-inter transition-colors duration-500">
+
+    <!-- Navbar -->
+    <nav class="flex justify-between items-center px-8 py-5 bg-[#fdf6f0]/80 dark:bg-[#1a1a2e]/80 backdrop-blur-md fixed w-full top-0 z-50">
+        <h1 class="font-playfair text-2xl text-[#6b3f2a] dark:text-[#e8c4a0]">See Yourself</h1>
+        <div class="flex items-center gap-8">
+            <a href="/index.html" class="text-sm text-gray-500 dark:text-gray-400 hover:text-[#6b3f2a] dark:hover:text-[#e8c4a0] transition">Home</a>
+            <a href="/about.html" class="text-sm text-gray-500 dark:text-gray-400 hover:text-[#6b3f2a] dark:hover:text-[#e8c4a0] transition">About</a>
+            <a href="/contact.html" class="text-sm text-gray-500 dark:text-gray-400 hover:text-[#6b3f2a] dark:hover:text-[#e8c4a0] transition">Contact</a>
+            <a href="/login.html" class="text-sm bg-[#6b3f2a] text-white px-5 py-2 rounded-full hover:bg-[#8b5e3c] transition">Begin</a>
+            <button onclick="toggleTheme()" class="text-lg">🌙</button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-24">
+        <p class="text-xs uppercase tracking-[0.3em] text-[#c4956a] dark:text-[#c4956a] mb-6">A space only for you</p>
+        <h2 class="font-playfair text-6xl md:text-7xl text-[#3d2314] dark:text-[#f0d9c0] leading-tight mb-6">
+            It's okay to feel<br/>
+            <span class="italic text-[#6b3f2a] dark:text-[#e8c4a0]">everything.</span>
+        </h2>
+        <p class="text-gray-500 dark:text-gray-400 max-w-lg text-lg font-light leading-relaxed mb-10">
+            You don't have to explain yourself here. Just show up as you are — angry, sad, lost, or numb. We'll help you understand what's underneath.
+        </p>
+        <a href="/register.html" class="bg-[#6b3f2a] text-white px-10 py-4 rounded-full text-base hover:bg-[#8b5e3c] transition shadow-lg">
+            Let it out →
+        </a>
+        <p class="text-xs text-gray-400 mt-4">No judgment. No pressure. Just you.</p>
+    </section>
+
+    <!-- Emotions Section -->
+    <section class="py-24 px-6 max-w-4xl mx-auto">
+        <p class="text-center text-xs uppercase tracking-widest text-[#c4956a] mb-4">What are you carrying today?</p>
+        <h3 class="font-playfair text-4xl text-center text-[#3d2314] dark:text-[#f0d9c0] mb-16">Every emotion has a message.<br/>Let's read it together.</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-white dark:bg-[#2a2a4a] p-6 rounded-2xl text-center shadow-sm hover:shadow-md transition cursor-pointer">
+                <div class="text-3xl mb-3">😔</div>
+                <p class="text-sm font-medium text-gray-600 dark:text-gray-300">Sadness</p>
+                <p class="text-xs text-gray-400 mt-1">Something needs to be felt</p>
+            </div>
+            <div class="bg-white dark:bg-[#2a2a4a] p-6 rounded-2xl text-center shadow-sm hover:shadow-md transition cursor-pointer">
+                <div class="text-3xl mb-3">😤</div>
+                <p class="text-sm font-medium text-gray-600 dark:text-gray-300">Anger</p>
+                <p class="text-xs text-gray-400 mt-1">A boundary was crossed</p>
+            </div>
+            <div class="bg-white dark:bg-[#2a2a4a] p-6 rounded-2xl text-center shadow-sm hover:shadow-md transition cursor-pointer">
+                <div class="text-3xl mb-3">😰</div>
+                <p class="text-sm font-medium text-gray-600 dark:text-gray-300">Anxiety</p>
+                <p class="text-xs text-gray-400 mt-1">Your mind is protecting you</p>
+            </div>
+            <div class="bg-white dark:bg-[#2a2a4a] p-6 rounded-2xl text-center shadow-sm hover:shadow-md transition cursor-pointer">
+                <div class="text-3xl mb-3">😶</div>
+                <p class="text-sm font-medium text-gray-600 dark:text-gray-300">Numb</p>
+                <p class="text-xs text-gray-400 mt-1">Too much was suppressed</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="py-24 px-6 bg-[#f5ede4] dark:bg-[#16213e]">
+        <div class="max-w-4xl mx-auto">
+            <p class="text-center text-xs uppercase tracking-widest text-[#c4956a] mb-4">How it works</p>
+            <h3 class="font-playfair text-4xl text-center text-[#3d2314] dark:text-[#f0d9c0] mb-16">Three steps to feeling lighter</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-[#6b3f2a] text-white rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-4">1</div>
+                    <h4 class="font-medium text-[#3d2314] dark:text-[#f0d9c0] mb-2">Tell us how you feel</h4>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 font-light">No filtering. No perfect words needed. Just what's true for you right now.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-[#6b3f2a] text-white rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-4">2</div>
+                    <h4 class="font-medium text-[#3d2314] dark:text-[#f0d9c0] mb-2">We help you understand it</h4>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 font-light">See patterns in your emotions. Understand what triggers them and what they mean.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-[#6b3f2a] text-white rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-4">3</div>
+                    <h4 class="font-medium text-[#3d2314] dark:text-[#f0d9c0] mb-2">You grow through it</h4>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 font-light">Get personalized exercises, meditations, and insights that actually match what you're feeling.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote -->
+    <section class="py-24 px-6 text-center">
+        <div class="max-w-2xl mx-auto">
+            <p class="font-playfair text-3xl italic text-[#6b3f2a] dark:text-[#e8c4a0] leading-relaxed">
+                "The emotion that can break your heart is sometimes the very one that heals it."
+            </p>
+            <p class="text-xs text-gray-400 mt-4 uppercase tracking-widest">Nicholas Sparks</p>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-24 px-6 bg-[#6b3f2a] text-center">
+        <h3 class="font-playfair text-4xl text-white mb-4">You've been holding it long enough.</h3>
+        <p class="text-[#e8c4a0] font-light mb-8 max-w-md mx-auto">This is your space. Private, safe, and completely yours.</p>
+        <a href="/register.html" class="bg-white text-[#6b3f2a] px-10 py-4 rounded-full font-medium hover:bg-[#fdf6f0] transition">
+            Start your journey →
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 text-center bg-[#fdf6f0] dark:bg-[#1a1a2e]">
+        <p class="text-xs text-gray-400">© 2026 See Yourself. A safe space for every emotion.</p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</body>
+</html>

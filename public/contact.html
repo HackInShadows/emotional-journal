@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>See Yourself — Contact</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap');
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#fdf6f0] dark:bg-[#1a1a2e] font-inter transition-colors duration-500">
+
+    <!-- Navbar -->
+    <nav class="flex justify-between items-center px-8 py-5 bg-[#fdf6f0]/80 dark:bg-[#1a1a2e]/80 backdrop-blur-md fixed w-full top-0 z-50">
+        <a href="/index.html" class="font-playfair text-2xl text-[#6b3f2a] dark:text-[#e8c4a0]">See Yourself</a>
+        <div class="flex items-center gap-8">
+            <a href="/index.html" class="text-sm text-gray-500 dark:text-gray-400 hover:text-[#6b3f2a] transition">Home</a>
+            <a href="/about.html" class="text-sm text-gray-500 dark:text-gray-400 hover:text-[#6b3f2a] transition">About</a>
+            <a href="/contact.html" class="text-sm text-[#6b3f2a] dark:text-[#e8c4a0] font-medium">Contact</a>
+            <a href="/login.html" class="text-sm bg-[#6b3f2a] text-white px-5 py-2 rounded-full hover:bg-[#8b5e3c] transition">Begin</a>
+            <button onclick="toggleTheme()" class="text-lg">🌙</button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="pt-40 pb-16 px-6 text-center">
+        <p class="text-xs uppercase tracking-[0.3em] text-[#c4956a] mb-4">Reach out</p>
+        <h1 class="font-playfair text-5xl text-[#3d2314] dark:text-[#f0d9c0] mb-4">We're here for you</h1>
+        <p class="text-gray-500 dark:text-gray-400 max-w-md mx-auto font-light">Questions, feedback, or just want to say something — this space is open.</p>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="pb-24 px-6">
+        <div class="max-w-lg mx-auto bg-white dark:bg-[#2a2a4a] p-10 rounded-3xl shadow-sm">
+            <div id="success" class="hidden bg-green-50 border border-green-200 text-green-700 text-sm px-4 py-3 rounded-xl mb-6">
+                Your message was sent. We'll get back to you soon.
+            </div>
+            <div class="mb-6">
+                <label class="text-xs uppercase tracking-widest text-gray-400 mb-2 block">Your Name</label>
+                <input type="text" id="name" placeholder="What should we call you?"
+                    class="w-full bg-[#f5ede4] dark:bg-[#1a1a2e] dark:text-white border-none outline-none px-4 py-3 rounded-xl text-sm placeholder-gray-400 focus:ring-2 focus:ring-[#6b3f2a]"/>
+            </div>
+            <div class="mb-6">
+                <label class="text-xs uppercase tracking-widest text-gray-400 mb-2 block">Email</label>
+                <input type="email" id="email" placeholder="you@example.com"
+                    class="w-full bg-[#f5ede4] dark:bg-[#1a1a2e] dark:text-white border-none outline-none px-4 py-3 rounded-xl text-sm placeholder-gray-400 focus:ring-2 focus:ring-[#6b3f2a]"/>
+            </div>
+            <div class="mb-8">
+                <label class="text-xs uppercase tracking-widest text-gray-400 mb-2 block">Message</label>
+                <textarea id="message" rows="5" placeholder="Tell us what's on your mind..."
+                    class="w-full bg-[#f5ede4] dark:bg-[#1a1a2e] dark:text-white border-none outline-none px-4 py-3 rounded-xl text-sm placeholder-gray-400 focus:ring-2 focus:ring-[#6b3f2a] resize-none"></textarea>
+            </div>
+            <button onclick="sendMessage()"
+                class="w-full bg-[#6b3f2a] text-white py-3 rounded-full hover:bg-[#8b5e3c] transition text-sm font-medium">
+                Send message →
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 text-center bg-[#fdf6f0] dark:bg-[#1a1a2e]">
+        <p class="text-xs text-gray-400">© 2026 See Yourself. A safe space for every emotion.</p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+        if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+
+        function sendMessage() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            if (!name || !email || !message) return alert('Please fill all fields');
+            document.getElementById('success').classList.remove('hidden');
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('message').value = '';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>See Yourself — About</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap');
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#fdf6f0] dark:bg-[#1a1a2e] font-inter transition-colors duration-500">
+
+    <!-- Navbar -->
+    <nav class="flex justify-between items-center px-8 py-5 bg-[#fdf6f0]/80 dark:bg-[#1a1a2e]/80 backdrop-blur-md fixed w-full top-0 z-50">
+        <a href="/index.html" class="font-playfair text-2xl text-[#6b3f2a] dark:text-[#e8c4a0]">See Yourself</a>
+        <div class="flex items-center gap-8">
+            <a href="/index.html" class="text-sm text-gray-500 dark:text-gray-400 hover:text-[#6b3f2a] transition">Home</a>
+            <a href="/about.html" class="text-sm text-[#6b3f2a] dark:text-[#e8c4a0] font-medium">About</a>
+            <a href="/contact.html" class="text-sm text-gray-500 dark:text-gray-400 hover:text-[#6b3f2a] transition">Contact</a>
+            <a href="/login.html" class="text-sm bg-[#6b3f2a] text-white px-5 py-2 rounded-full hover:bg-[#8b5e3c] transition">Begin</a>
+            <button onclick="toggleTheme()" class="text-lg">🌙</button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="pt-40 pb-24 px-6 text-center">
+        <p class="text-xs uppercase tracking-[0.3em] text-[#c4956a] mb-4">Our story</p>
+        <h1 class="font-playfair text-5xl text-[#3d2314] dark:text-[#f0d9c0] mb-6">Why See Yourself exists</h1>
+        <p class="text-gray-500 dark:text-gray-400 max-w-xl mx-auto font-light leading-relaxed">
+            Because too many people are carrying emotions they were never taught to understand. Because "I'm fine" became the default answer. Because somewhere along the way, feeling things deeply became something to hide.
+        </p>
+    </section>
+
+    <!-- Mission -->
+    <section class="py-16 px-6 bg-[#f5ede4] dark:bg-[#16213e]">
+        <div class="max-w-3xl mx-auto text-center">
+            <p class="font-playfair text-3xl italic text-[#6b3f2a] dark:text-[#e8c4a0] leading-relaxed">
+                "We believe every emotion — even the ones that scare you — is trying to tell you something important about yourself."
+            </p>
+        </div>
+    </section>
+
+    <!-- What we do -->
+    <section class="py-24 px-6 max-w-4xl mx-auto">
+        <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-4 text-center">What we do</p>
+        <h2 class="font-playfair text-4xl text-[#3d2314] dark:text-[#f0d9c0] text-center mb-16">A space built around you</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white dark:bg-[#2a2a4a] p-8 rounded-2xl shadow-sm">
+                <div class="text-3xl mb-4">🧠</div>
+                <h3 class="font-medium text-[#3d2314] dark:text-[#f0d9c0] mb-2">Emotion awareness</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed">We help you name what you're feeling — because naming an emotion is the first step to understanding it.</p>
+            </div>
+            <div class="bg-white dark:bg-[#2a2a4a] p-8 rounded-2xl shadow-sm">
+                <div class="text-3xl mb-4">📊</div>
+                <h3 class="font-medium text-[#3d2314] dark:text-[#f0d9c0] mb-2">Pattern recognition</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed">Your weekly mood data reveals patterns you might not see in the moment — helping you understand your emotional cycles.</p>
+            </div>
+            <div class="bg-white dark:bg-[#2a2a4a] p-8 rounded-2xl shadow-sm">
+                <div class="text-3xl mb-4">🧘</div>
+                <h3 class="font-medium text-[#3d2314] dark:text-[#f0d9c0] mb-2">Personalized exercises</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed">Not generic advice. Exercises and suggestions matched specifically to what you're feeling right now.</p>
+            </div>
+            <div class="bg-white dark:bg-[#2a2a4a] p-8 rounded-2xl shadow-sm">
+                <div class="text-3xl mb-4">🤝</div>
+                <h3 class="font-medium text-[#3d2314] dark:text-[#f0d9c0] mb-2">Professional guidance</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 font-light leading-relaxed">When emotions feel too heavy to carry alone, we guide you toward professional support — without judgment.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values -->
+    <section class="py-24 px-6 bg-[#6b3f2a] text-center">
+        <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-4">What we stand for</p>
+        <h2 class="font-playfair text-4xl text-white mb-16">Our values</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div>
+                <p class="font-playfair text-xl italic text-[#e8c4a0] mb-2">No judgment</p>
+                <p class="text-sm text-[#c4956a] font-light">Every emotion is valid here. There is no wrong way to feel.</p>
+            </div>
+            <div>
+                <p class="font-playfair text-xl italic text-[#e8c4a0] mb-2">Complete privacy</p>
+                <p class="text-sm text-[#c4956a] font-light">Your journal belongs only to you. Always.</p>
+            </div>
+            <div>
+                <p class="font-playfair text-xl italic text-[#e8c4a0] mb-2">Real growth</p>
+                <p class="text-sm text-[#c4956a] font-light">Not toxic positivity. Honest, gentle progress.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 text-center bg-[#fdf6f0] dark:bg-[#1a1a2e]">
+        <p class="text-xs text-gray-400">© 2026 See Yourself. A safe space for every emotion.</p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+        if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+    </script>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>See Yourself — Your Space</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap');
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#fdf6f0] dark:bg-[#1a1a2e] font-inter transition-colors duration-500 min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="flex justify-between items-center px-8 py-5 bg-[#fdf6f0]/80 dark:bg-[#1a1a2e]/80 backdrop-blur-md fixed w-full top-0 z-50">
+        <a href="/index.html" class="font-playfair text-xl text-[#6b3f2a] dark:text-[#e8c4a0]">See Yourself</a>
+        <div class="flex items-center gap-6">
+            <span id="greeting" class="text-sm text-gray-500 dark:text-gray-400"></span>
+            <button onclick="toggleTheme()" class="text-lg">🌙</button>
+            <button onclick="logout()" class="text-sm bg-[#f5ede4] dark:bg-[#2a2a4a] text-[#6b3f2a] dark:text-[#e8c4a0] px-4 py-2 rounded-full hover:bg-[#e8d5c4] transition">Leave</button>
+        </div>
+    </nav>
+
+    <div class="pt-28 px-6 pb-16 max-w-4xl mx-auto">
+
+        <!-- Entry Form -->
+        <div class="bg-white dark:bg-[#2a2a4a] rounded-3xl p-8 shadow-sm mb-8">
+            <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-2">Today's check-in</p>
+            <h2 class="font-playfair text-3xl text-[#3d2314] dark:text-[#f0d9c0] mb-6">How are you feeling right now?</h2>
+
+            <div class="grid grid-cols-3 md:grid-cols-6 gap-3 mb-6" id="moodSelector">
+                <button onclick="selectMood('happy')" data-mood="happy" class="mood-btn flex flex-col items-center p-3 rounded-2xl bg-[#f5ede4] dark:bg-[#1a1a2e] hover:bg-[#e8c4a0] transition">
+                    <span class="text-2xl mb-1">😊</span>
+                    <span class="text-xs text-gray-500">Happy</span>
+                </button>
+                <button onclick="selectMood('sad')" data-mood="sad" class="mood-btn flex flex-col items-center p-3 rounded-2xl bg-[#f5ede4] dark:bg-[#1a1a2e] hover:bg-[#e8c4a0] transition">
+                    <span class="text-2xl mb-1">😔</span>
+                    <span class="text-xs text-gray-500">Sad</span>
+                </button>
+                <button onclick="selectMood('angry')" data-mood="angry" class="mood-btn flex flex-col items-center p-3 rounded-2xl bg-[#f5ede4] dark:bg-[#1a1a2e] hover:bg-[#e8c4a0] transition">
+                    <span class="text-2xl mb-1">😤</span>
+                    <span class="text-xs text-gray-500">Angry</span>
+                </button>
+                <button onclick="selectMood('anxious')" data-mood="anxious" class="mood-btn flex flex-col items-center p-3 rounded-2xl bg-[#f5ede4] dark:bg-[#1a1a2e] hover:bg-[#e8c4a0] transition">
+                    <span class="text-2xl mb-1">😰</span>
+                    <span class="text-xs text-gray-500">Anxious</span>
+                </button>
+                <button onclick="selectMood('grateful')" data-mood="grateful" class="mood-btn flex flex-col items-center p-3 rounded-2xl bg-[#f5ede4] dark:bg-[#1a1a2e] hover:bg-[#e8c4a0] transition">
+                    <span class="text-2xl mb-1">🙏</span>
+                    <span class="text-xs text-gray-500">Grateful</span>
+                </button>
+                <button onclick="selectMood('numb')" data-mood="numb" class="mood-btn flex flex-col items-center p-3 rounded-2xl bg-[#f5ede4] dark:bg-[#1a1a2e] hover:bg-[#e8c4a0] transition">
+                    <span class="text-2xl mb-1">😶</span>
+                    <span class="text-xs text-gray-500">Numb</span>
+                </button>
+            </div>
+
+            <textarea id="text" rows="4" placeholder="Write freely. No one is watching. No one will judge..."
+                class="w-full bg-[#f5ede4] dark:bg-[#1a1a2e] dark:text-white border-none outline-none px-4 py-3 rounded-2xl text-sm placeholder-gray-400 focus:ring-2 focus:ring-[#6b3f2a] resize-none mb-4 font-light"></textarea>
+
+            <button onclick="saveEntry()"
+                class="bg-[#6b3f2a] text-white px-8 py-3 rounded-full hover:bg-[#8b5e3c] transition text-sm font-medium">
+                Save this moment →
+            </button>
+        </div>
+
+        <!-- Exercise Suggestion -->
+        <div id="exerciseBox" class="hidden bg-[#6b3f2a] rounded-3xl p-8 shadow-sm mb-8">
+            <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-2">For you, right now</p>
+            <h3 id="exerciseTitle" class="font-playfair text-2xl text-white mb-4"></h3>
+            <div id="exerciseList" class="space-y-3 mb-6"></div>
+            <div id="severityAlert" class="hidden bg-[#3d2314] rounded-2xl p-4 mt-4">
+                <p class="text-[#e8c4a0] text-sm font-medium mb-1">💙 You might benefit from professional support</p>
+                <p class="text-[#c4956a] text-xs font-light">What you're carrying sounds heavy. Speaking with a counselor or therapist can help. You don't have to do this alone.</p>
+                <a href="https://www.vandrevala.org" target="_blank" class="inline-block mt-3 text-xs bg-[#6b3f2a] text-white px-4 py-2 rounded-full hover:bg-[#8b5e3c] transition">Find support →</a>
+            </div>
+        </div>
+
+        <!-- Weekly Chart -->
+        <div class="bg-white dark:bg-[#2a2a4a] rounded-3xl p-8 shadow-sm mb-8">
+            <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-2">Your patterns</p>
+            <h3 class="font-playfair text-2xl text-[#3d2314] dark:text-[#f0d9c0] mb-6">Weekly mood summary</h3>
+            <canvas id="moodChart" height="120"></canvas>
+        </div>
+
+        <!-- Past Entries -->
+        <div class="bg-white dark:bg-[#2a2a4a] rounded-3xl p-8 shadow-sm">
+            <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-2">Your journal</p>
+            <h3 class="font-playfair text-2xl text-[#3d2314] dark:text-[#f0d9c0] mb-6">Past entries</h3>
+            <div id="entries" class="space-y-4"></div>
+        </div>
+    </div>
+
+    <script>
+        const token = localStorage.getItem('token');
+        const name = localStorage.getItem('name');
+        if (!token) window.location.href = '/login.html';
+
+        document.getElementById('greeting').textContent = name ? `Hello, ${name}` : '';
+
+        let selectedMood = '';
+
+        const exercises = {
+            happy: {
+                title: "You're glowing today 🌟",
+                list: ["Write down 3 things that made you smile", "Share your energy — call someone you love", "Channel this into something creative"],
+                severe: false
+            },
+            sad: {
+                title: "It's okay to feel this 🌧️",
+                list: ["Put your hand on your heart and breathe slowly for 2 minutes", "Write a letter to yourself — no filter", "Listen to music that matches your mood, then one that lifts it", "Go outside for 10 minutes, even just to sit"],
+                severe: true
+            },
+            angry: {
+                title: "Your anger has a message 🔥",
+                list: ["Write everything you're angry about — then tear the paper", "Do 20 jumping jacks or walk fast for 5 minutes", "Ask yourself: what boundary was crossed?", "Breathe in for 4 counts, hold 4, out for 6"],
+                severe: false
+            },
+            anxious: {
+                title: "Your mind is trying to protect you 🌿",
+                list: ["Try the 5-4-3-2-1 grounding technique", "Name 5 things you can see right now", "Place both feet flat on the floor and feel the ground", "Remind yourself: this feeling will pass"],
+                severe: true
+            },
+            grateful: {
+                title: "Gratitude is a superpower 🙏",
+                list: ["Write 5 specific things you're grateful for today", "Tell someone you appreciate them", "Sit quietly for 5 minutes and just notice what's good"],
+                severe: false
+            },
+            numb: {
+                title: "Numbness is also a feeling 🫧",
+                list: ["Try holding something cold or warm — reconnect with your body", "Put on a show or song from a happier time", "Write: 'I feel nothing because...' and see what comes", "Talk to someone — anyone — even briefly"],
+                severe: true
+            }
+        };
+
+        function selectMood(mood) {
+            selectedMood = mood;
+            document.querySelectorAll('.mood-btn').forEach(btn => {
+                btn.classList.remove('bg-[#6b3f2a]', 'text-white');
+                btn.classList.add('bg-[#f5ede4]', 'dark:bg-[#1a1a2e]');
+            });
+            const selected = document.querySelector(`[data-mood="${mood}"]`);
+            selected.classList.add('bg-[#6b3f2a]', 'text-white');
+            selected.classList.remove('bg-[#f5ede4]', 'dark:bg-[#1a1a2e]');
+        }
+
+        function showExercises(mood) {
+            const data = exercises[mood];
+            if (!data) return;
+            document.getElementById('exerciseTitle').textContent = data.title;
+            document.getElementById('exerciseList').innerHTML = data.list.map(e => `
+                <div class="flex items-start gap-3">
+                    <span class="text-[#c4956a] mt-0.5">→</span>
+                    <p class="text-[#e8c4a0] text-sm font-light">${e}</p>
+                </div>
+            `).join('');
+            if (data.severe) {
+                document.getElementById('severityAlert').classList.remove('hidden');
+            } else {
+                document.getElementById('severityAlert').classList.add('hidden');
+            }
+            document.getElementById('exerciseBox').classList.remove('hidden');
+        }
+
+        async function saveEntry() {
+            if (!selectedMood) return alert('Please select how you are feeling');
+            const text = document.getElementById('text').value;
+            if (!text) return alert('Please write something');
+
+            const res = await fetch('/api/entries', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'authorization': token },
+                body: JSON.stringify({ mood: selectedMood, text })
+            });
+
+            if (res.ok) {
+                document.getElementById('text').value = '';
+                showExercises(selectedMood);
+                loadEntries();
+                loadChart();
+            }
+        }
+
+        async function loadEntries() {
+            const res = await fetch('/api/entries', {
+                headers: { 'authorization': token }
+            });
+            const entries = await res.json();
+            const moodEmoji = { happy:'😊', sad:'😔', angry:'😤', anxious:'😰', grateful:'🙏', numb:'😶' };
+            document.getElementById('entries').innerHTML = entries.length === 0
+                ? '<p class="text-gray-400 text-sm font-light">Your journal is empty. Your first entry is waiting.</p>'
+                : entries.map(e => `
+                    <div class="border border-[#f5ede4] dark:border-[#3a3a5a] p-5 rounded-2xl">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-medium text-[#6b3f2a] dark:text-[#e8c4a0]">${moodEmoji[e.mood] || '💭'} ${e.mood}</span>
+                            <span class="text-xs text-gray-400">${new Date(e.created_at).toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' })}</span>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 font-light leading-relaxed">${e.text}</p>
+                    </div>
+                `).join('');
+        }
+
+        async function loadChart() {
+            const res = await fetch('/api/entries/summary', {
+                headers: { 'authorization': token }
+            });
+            const data = await res.json();
+            const labels = data.map(d => d.mood);
+            const counts = data.map(d => d.count);
+            const ctx = document.getElementById('moodChart').getContext('2d');
+            if (window.moodChartInstance) window.moodChartInstance.destroy();
+            window.moodChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels,
+                    datasets: [{
+                        label: 'Times logged',
+                        data: counts,
+                        backgroundColor: '#c4956a',
+                        borderRadius: 8,
+                        borderSkipped: false
+                    }]
+                },
+                options: {
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, ticks: { stepSize: 1 }, grid: { display: false } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+        function logout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('name');
+            window.location.href = '/index.html';
+        }
+
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+        if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+
+        loadEntries();
+        loadChart();
+    </script>
+</body>
+</html>
