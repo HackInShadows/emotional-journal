@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>See Yourself — Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap');
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#fdf6f0] dark:bg-[#1a1a2e] font-inter min-h-screen transition-colors duration-500">
+
+    <!-- Login Gate -->
+    <div id="loginGate" class="min-h-screen flex items-center justify-center px-6">
+        <div class="bg-white dark:bg-[#2a2a4a] p-10 rounded-3xl shadow-sm w-full max-w-sm">
+            <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-2">Restricted</p>
+            <h2 class="font-playfair text-3xl text-[#3d2314] dark:text-[#f0d9c0] mb-6">Admin Access</h2>
+            <div id="loginError" class="hidden bg-rose-50 border border-rose-200 text-rose-600 text-xs px-4 py-2 rounded-xl mb-4"></div>
+            <input type="password" id="adminPassword" placeholder="Enter admin password"
+                class="w-full bg-[#f5ede4] dark:bg-[#1a1a2e] dark:text-white border-none outline-none px-4 py-3 rounded-xl text-sm mb-4 focus:ring-2 focus:ring-[#6b3f2a]"/>
+            <button onclick="checkPassword()"
+                class="w-full bg-[#6b3f2a] text-white py-3 rounded-full hover:bg-[#8b5e3c] transition text-sm">
+                Enter →
+            </button>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="adminPanel" class="hidden">
+        <nav class="flex justify-between items-center px-8 py-5 bg-white dark:bg-[#2a2a4a] border-b border-[#f5ede4] dark:border-[#3a3a5a]">
+            <h1 class="font-playfair text-xl text-[#6b3f2a] dark:text-[#e8c4a0]">See Yourself — Admin</h1>
+            <button onclick="adminLogout()" class="text-sm text-gray-400 hover:text-[#6b3f2a] transition">Exit panel</button>
+        </nav>
+
+        <div class="px-8 py-10 max-w-6xl mx-auto">
+
+            <!-- Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10" id="statsGrid"></div>
+
+            <!-- Users Table -->
+            <div class="bg-white dark:bg-[#2a2a4a] rounded-3xl p-8 shadow-sm mb-8">
+                <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-2">Registered users</p>
+                <h2 class="font-playfair text-2xl text-[#3d2314] dark:text-[#f0d9c0] mb-6">All users</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="text-left text-gray-400 border-b border-[#f5ede4] dark:border-[#3a3a5a]">
+                                <th class="pb-3 font-medium">ID</th>
+                                <th class="pb-3 font-medium">Name</th>
+                                <th class="pb-3 font-medium">Email</th>
+                                <th class="pb-3 font-medium">Joined</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTable" class="text-gray-600 dark:text-gray-300"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Entries Table -->
+            <div class="bg-white dark:bg-[#2a2a4a] rounded-3xl p-8 shadow-sm">
+                <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-2">All journal entries</p>
+                <h2 class="font-playfair text-2xl text-[#3d2314] dark:text-[#f0d9c0] mb-6">Entries log</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="text-left text-gray-400 border-b border-[#f5ede4] dark:border-[#3a3a5a]">
+                                <th class="pb-3 font-medium">ID</th>
+                                <th class="pb-3 font-medium">User ID</th>
+                                <th class="pb-3 font-medium">Mood</th>
+                                <th class="pb-3 font-medium">Entry</th>
+                                <th class="pb-3 font-medium">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="entriesTable" class="text-gray-600 dark:text-gray-300"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ADMIN_PASSWORD = 'seeyourself@admin2026';
+
+        function checkPassword() {
+            const val = document.getElementById('adminPassword').value;
+            if (val === ADMIN_PASSWORD) {
+                document.getElementById('loginGate').classList.add('hidden');
+                document.getElementById('adminPanel').classList.remove('hidden');
+                loadAdminData();
+            } else {
+                const err = document.getElementById('loginError');
+                err.classList.remove('hidden');
+                err.textContent = 'Incorrect password.';
+            }
+        }
+
+        function adminLogout() {
+            document.getElementById('loginGate').classList.remove('hidden');
+            document.getElementById('adminPanel').classList.add('hidden');
+            document.getElementById('adminPassword').value = '';
+        }
+
+        async function loadAdminData() {
+            const res = await fetch('/api/admin/data', {
+                headers: { 'admin-key': ADMIN_PASSWORD }
+            });
+            const data = await res.json();
+
+            document.getElementById('statsGrid').innerHTML = `
+                <div class="bg-white dark:bg-[#2a2a4a] p-6 rounded-2xl shadow-sm text-center">
+                    <h3 class="font-playfair text-4xl text-[#6b3f2a] dark:text-[#e8c4a0]">${data.users.length}</h3>
+                    <p class="text-sm text-gray-400 mt-1">Total Users</p>
+                </div>
+                <div class="bg-white dark:bg-[#2a2a4a] p-6 rounded-2xl shadow-sm text-center">
+                    <h3 class="font-playfair text-4xl text-[#6b3f2a] dark:text-[#e8c4a0]">${data.entries.length}</h3>
+                    <p class="text-sm text-gray-400 mt-1">Total Entries</p>
+                </div>
+                <div class="bg-white dark:bg-[#2a2a4a] p-6 rounded-2xl shadow-sm text-center">
+                    <h3 class="font-playfair text-4xl text-[#6b3f2a] dark:text-[#e8c4a0]">${data.topMood}</h3>
+                    <p class="text-sm text-gray-400 mt-1">Most Common Mood</p>
+                </div>
+            `;
+
+            document.getElementById('usersTable').innerHTML = data.users.map(u => `
+                <tr class="border-b border-[#f5ede4] dark:border-[#3a3a5a]">
+                    <td class="py-3">${u.id}</td>
+                    <td class="py-3">${u.name}</td>
+                    <td class="py-3">${u.email}</td>
+                    <td class="py-3">${new Date(u.created_at).toLocaleDateString()}</td>
+                </tr>
+            `).join('');
+
+            document.getElementById('entriesTable').innerHTML = data.entries.map(e => `
+                <tr class="border-b border-[#f5ede4] dark:border-[#3a3a5a]">
+                    <td class="py-3">${e.id}</td>
+                    <td class="py-3">${e.user_id}</td>
+                    <td class="py-3">${e.mood}</td>
+                    <td class="py-3 max-w-xs truncate">${e.text}</td>
+                    <td class="py-3">${new Date(e.created_at).toLocaleDateString()}</td>
+                </tr>
+            `).join('');
+        }
+    </script>
+</body>
+</html>

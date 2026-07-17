@@ -13,6 +13,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const authRoutes = require('./routes/auth');
 const entryRoutes = require('./routes/entries');
+app.use('/api/admin', require('./routes/admin'));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/entries', entryRoutes);
