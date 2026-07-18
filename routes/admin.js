@@ -25,14 +25,25 @@ router.get('/data', verifyAdmin, (req, res) => {
     });
 });
 
+// Get entries by user
+router.get('/user/:id/entries', verifyAdmin, (req, res) => {
+    db.query(
+        'SELECT * FROM entries WHERE user_id = ? ORDER BY created_at DESC',
+        [req.params.id],
+        (err, entries) => {
+            if (err) return res.status(500).json({ error: 'Failed' });
+            res.json(entries);
+        }
+    );
+});
+
 // Delete user
 router.delete('/user/:id', verifyAdmin, (req, res) => {
-    const id = req.params.id;
-    db.query('DELETE FROM entries WHERE user_id = ?', [id], (err) => {
+    db.query('DELETE FROM entries WHERE user_id = ?', [req.params.id], (err) => {
         if (err) return res.status(500).json({ error: 'Failed to delete entries' });
-        db.query('DELETE FROM users WHERE id = ?', [id], (err2) => {
+        db.query('DELETE FROM users WHERE id = ?', [req.params.id], (err2) => {
             if (err2) return res.status(500).json({ error: 'Failed to delete user' });
-            res.json({ message: 'User deleted successfully' });
+            res.json({ message: 'User deleted' });
         });
     });
 });
@@ -40,9 +51,22 @@ router.delete('/user/:id', verifyAdmin, (req, res) => {
 // Delete entry
 router.delete('/entry/:id', verifyAdmin, (req, res) => {
     db.query('DELETE FROM entries WHERE id = ?', [req.params.id], (err) => {
-        if (err) return res.status(500).json({ error: 'Failed to delete entry' });
-        res.json({ message: 'Entry deleted successfully' });
+        if (err) return res.status(500).json({ error: 'Failed' });
+        res.json({ message: 'Entry deleted' });
     });
+});
+
+// Update entry mood
+router.put('/entry/:id', verifyAdmin, (req, res) => {
+    const { mood, text } = req.body;
+    db.query(
+        'UPDATE entries SET mood = ?, text = ? WHERE id = ?',
+        [mood, text, req.params.id],
+        (err) => {
+            if (err) return res.status(500).json({ error: 'Failed' });
+            res.json({ message: 'Entry updated' });
+        }
+    );
 });
 
 // Export CSV
@@ -56,10 +80,7 @@ router.get('/export', verifyAdmin, (req, res) => {
         if (err) return res.status(500).json({ error: 'Failed' });
         const headers = ['ID', 'Name', 'Email', 'Mood', 'Entry', 'Date'];
         const rows = results.map(r => [
-            r.id,
-            r.name,
-            r.email,
-            r.mood,
+            r.id, r.name, r.email, r.mood,
             `"${r.text.replace(/"/g, '""')}"`,
             new Date(r.created_at).toLocaleDateString()
         ].join(','));
