@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>See Yourself — Gratitude & Positivity</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap');
+        .font-playfair { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body class="bg-[#fdf6f0] dark:bg-[#1a1a2e] font-inter min-h-screen transition-colors duration-500">
+    <nav class="flex justify-between items-center px-8 py-5 bg-[#fdf6f0]/80 dark:bg-[#1a1a2e]/80 backdrop-blur-md fixed w-full top-0 z-50 border-b border-[#f5ede4] dark:border-[#2a2a4a]">
+        <a href="/entries.html" class="font-playfair text-xl text-[#6b3f2a] dark:text-[#e8c4a0]">← See Yourself</a>
+        <button onclick="toggleTheme()" class="text-lg">🌙</button>
+    </nav>
+
+    <div class="pt-28 px-6 pb-16 max-w-2xl mx-auto">
+        <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-2">Therapy space</p>
+        <h1 class="font-playfair text-4xl text-[#3d2314] dark:text-[#f0d9c0] mb-3">Gratitude & Positivity</h1>
+        <p class="text-gray-500 dark:text-gray-400 font-light mb-10">Not toxic positivity. Real gratitude — the kind that coexists with hard things and makes them lighter.</p>
+
+        <!-- Gratitude practice -->
+        <div class="bg-white dark:bg-[#2a2a4a] rounded-3xl p-8 shadow-sm mb-6">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="text-3xl">🙏</span>
+                <h2 class="font-playfair text-2xl text-[#3d2314] dark:text-[#f0d9c0]">Gratitude Practice</h2>
+            </div>
+            <p class="text-sm text-gray-500 dark:text-gray-400 font-light mb-5">Gratitude rewires the brain over time. Not because it denies problems — but because it trains your attention to also see what's good.</p>
+            <div class="space-y-3 mb-4">
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Write 5 specific things you're grateful for — not "family" but "the way my mother texted to check on me today"</p></div>
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Tell someone specifically what you appreciate about them — not generally</p></div>
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Notice 3 small pleasures today — a smell, a taste, a moment of quiet</p></div>
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Write about a hard time that made you who you are today — find the gratitude inside the struggle</p></div>
+            </div>
+        </div>
+
+        <!-- Real positivity -->
+        <div class="bg-white dark:bg-[#2a2a4a] rounded-3xl p-8 shadow-sm mb-6">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="text-3xl">☀️</span>
+                <h2 class="font-playfair text-2xl text-[#3d2314] dark:text-[#f0d9c0]">Real Positivity</h2>
+            </div>
+            <p class="text-sm text-gray-500 dark:text-gray-400 font-light mb-5">Real positivity is not "good vibes only." It's choosing to look for meaning and growth even in difficult moments.</p>
+            <div class="space-y-3">
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Ask: "What is this situation teaching me?" — not to bypass the pain, but to find the thread of growth</p></div>
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Celebrate a small win today — something you did right, however minor</p></div>
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Write: "I am proud of myself for..." — finishing this sentence is harder than it sounds, and more important</p></div>
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Do one act of kindness today — giving shifts how you feel about your own life</p></div>
+            </div>
+        </div>
+
+        <div class="bg-[#6b3f2a] rounded-3xl p-8 text-center">
+            <p class="font-playfair text-2xl italic text-white mb-3">"You are allowed to be both a masterpiece and a work in progress."</p>
+            <p class="text-[#c4956a] text-xs uppercase tracking-widest">Sophia Bush</p>
+        </div>
+        <!-- Resources -->
+<div class="bg-white dark:bg-[#2a2a4a] rounded-3xl p-8 shadow-sm mb-6">
+    <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-4">Resources</p>
+    <div class="space-y-3">
+        <a href="https://www.youtube.com/results?search_query=gratitude+meditation+guided+morning" target="_blank"
+            class="flex items-center gap-3 bg-[#f5ede4] dark:bg-[#1a1a2e] p-4 rounded-2xl hover:bg-[#e8d5c4] transition">
+            <span class="text-lg">🧘</span>
+            <div>
+                <p class="text-[#6b3f2a] dark:text-[#e8c4a0] text-sm font-medium">Morning gratitude meditation</p>
+                <p class="text-gray-400 text-xs">YouTube guided session</p>
+            </div>
+        </a>
+        <a href="https://www.youtube.com/results?search_query=gratitude+music+528hz+positive" target="_blank"
+            class="flex items-center gap-3 bg-[#f5ede4] dark:bg-[#1a1a2e] p-4 rounded-2xl hover:bg-[#e8d5c4] transition">
+            <span class="text-lg">🎵</span>
+            <div>
+                <p class="text-[#6b3f2a] dark:text-[#e8c4a0] text-sm font-medium">Gratitude frequency music</p>
+                <p class="text-gray-400 text-xs">YouTube</p>
+            </div>
+        </a>
+    </div>
+</div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+        if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+    </script>
+</body>
+</html>

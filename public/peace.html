@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>See Yourself — Peace & Rest</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap');
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#1a1a2e] font-inter min-h-screen transition-colors duration-500">
+
+    <nav class="flex justify-between items-center px-8 py-5 bg-[#1a1a2e]/80 backdrop-blur-md fixed w-full top-0 z-50 border-b border-[#2a2a4a]">
+        <a href="/entries.html" class="font-playfair text-xl text-[#e8c4a0]">← See Yourself</a>
+        <button onclick="toggleTheme()" class="text-lg">☀️</button>
+    </nav>
+
+    <div class="pt-28 px-6 pb-16 max-w-2xl mx-auto">
+        <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-2">Peace & Rest</p>
+        <h1 class="font-playfair text-4xl text-[#f0d9c0] mb-3">You are allowed to rest.</h1>
+        <p class="text-gray-400 font-light mb-12">This space has no exercises, no goals, no pressure. Just things that help you breathe, slow down, and feel safe.</p>
+
+        <!-- Sleeping Music -->
+        <div class="bg-[#2a2a4a] rounded-3xl p-8 mb-6">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="text-3xl">🌙</span>
+                <h2 class="font-playfair text-2xl text-[#f0d9c0]">Sleeping Music</h2>
+            </div>
+            <p class="text-gray-400 text-sm font-light mb-5">When your mind won't stop at night. Let sound carry you to rest.</p>
+            <div class="space-y-3">
+                <a href="https://www.youtube.com/results?search_query=sleep+music+deep+sleep+8+hours" target="_blank"
+                    class="flex items-center gap-3 bg-[#1a1a2e] p-4 rounded-2xl hover:bg-[#3a3a5a] transition">
+                    <span class="text-lg">▶</span>
+                    <div>
+                        <p class="text-[#e8c4a0] text-sm font-medium">Deep sleep music — 8 hours</p>
+                        <p class="text-gray-500 text-xs">YouTube</p>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/results?search_query=rain+sounds+for+sleeping" target="_blank"
+                    class="flex items-center gap-3 bg-[#1a1a2e] p-4 rounded-2xl hover:bg-[#3a3a5a] transition">
+                    <span class="text-lg">🌧</span>
+                    <div>
+                        <p class="text-[#e8c4a0] text-sm font-medium">Rain sounds for sleep</p>
+                        <p class="text-gray-500 text-xs">YouTube</p>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/results?search_query=white+noise+sleep+aid" target="_blank"
+                    class="flex items-center gap-3 bg-[#1a1a2e] p-4 rounded-2xl hover:bg-[#3a3a5a] transition">
+                    <span class="text-lg">🔊</span>
+                    <div>
+                        <p class="text-[#e8c4a0] text-sm font-medium">White noise for deep rest</p>
+                        <p class="text-gray-500 text-xs">YouTube</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Meditation Music -->
+        <div class="bg-[#2a2a4a] rounded-3xl p-8 mb-6">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="text-3xl">🧘</span>
+                <h2 class="font-playfair text-2xl text-[#f0d9c0]">Meditation Music</h2>
+            </div>
+            <p class="text-gray-400 text-sm font-light mb-5">To sit with yourself. No goals — just stillness.</p>
+            <div class="space-y-3">
+                <a href="https://www.youtube.com/results?search_query=meditation+music+528hz+healing" target="_blank"
+                    class="flex items-center gap-3 bg-[#1a1a2e] p-4 rounded-2xl hover:bg-[#3a3a5a] transition">
+                    <span class="text-lg">✨</span>
+                    <div>
+                        <p class="text-[#e8c4a0] text-sm font-medium">528Hz healing frequency</p>
+                        <p class="text-gray-500 text-xs">YouTube</p>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/results?search_query=tibetan+singing+bowls+meditation" target="_blank"
+                    class="flex items-center gap-3 bg-[#1a1a2e] p-4 rounded-2xl hover:bg-[#3a3a5a] transition">
+                    <span class="text-lg">🎵</span>
+                    <div>
+                        <p class="text-[#e8c4a0] text-sm font-medium">Tibetan singing bowls</p>
+                        <p class="text-gray-500 text-xs">YouTube</p>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/results?search_query=guided+body+scan+meditation+sleep" target="_blank"
+                    class="flex items-center gap-3 bg-[#1a1a2e] p-4 rounded-2xl hover:bg-[#3a3a5a] transition">
+                    <span class="text-lg">🌊</span>
+                    <div>
+                        <p class="text-[#e8c4a0] text-sm font-medium">Guided body scan meditation</p>
+                        <p class="text-gray-500 text-xs">YouTube</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Relief -->
+        <div class="bg-[#2a2a4a] rounded-3xl p-8 mb-6">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="text-3xl">🕊️</span>
+                <h2 class="font-playfair text-2xl text-[#f0d9c0]">Relief & Calm</h2>
+            </div>
+            <p class="text-gray-400 text-sm font-light mb-5">When you just need to feel lighter. No effort required.</p>
+            <div class="space-y-3">
+                <a href="https://www.youtube.com/results?search_query=nature+sounds+forest+birds+relaxing" target="_blank"
+                    class="flex items-center gap-3 bg-[#1a1a2e] p-4 rounded-2xl hover:bg-[#3a3a5a] transition">
+                    <span class="text-lg">🌿</span>
+                    <div>
+                        <p class="text-[#e8c4a0] text-sm font-medium">Forest and bird sounds</p>
+                        <p class="text-gray-500 text-xs">YouTube</p>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/results?search_query=anxiety+relief+music+calm+mind" target="_blank"
+                    class="flex items-center gap-3 bg-[#1a1a2e] p-4 rounded-2xl hover:bg-[#3a3a5a] transition">
+                    <span class="text-lg">💆</span>
+                    <div>
+                        <p class="text-[#e8c4a0] text-sm font-medium">Anxiety relief music</p>
+                        <p class="text-gray-500 text-xs">YouTube</p>
+                    </div>
+                </a>
+                <a href="https://www.youtube.com/results?search_query=lo+fi+chill+study+relax" target="_blank"
+                    class="flex items-center gap-3 bg-[#1a1a2e] p-4 rounded-2xl hover:bg-[#3a3a5a] transition">
+                    <span class="text-lg">☕</span>
+                    <div>
+                        <p class="text-[#e8c4a0] text-sm font-medium">Lo-fi chill — just exist</p>
+                        <p class="text-gray-500 text-xs">YouTube</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Closing -->
+        <div class="text-center py-8">
+            <p class="font-playfair text-2xl italic text-[#e8c4a0] mb-3">"Almost everything will work again if you unplug it for a few minutes. Including you."</p>
+            <p class="text-xs text-gray-500 uppercase tracking-widest">Anne Lamott</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</body>
+</html>

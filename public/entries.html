@@ -30,115 +30,162 @@
         <div class="bg-white dark:bg-[#2a2a4a] rounded-3xl p-8 shadow-sm mb-8">
             <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-2">Today's check-in</p>
             <h2 class="font-playfair text-3xl text-[#3d2314] dark:text-[#f0d9c0] mb-6">How are you feeling right now?</h2>
-
             <div class="grid grid-cols-3 md:grid-cols-6 gap-3 mb-6">
                 <button onclick="selectMood('happy')" data-mood="happy" class="mood-btn flex flex-col items-center p-3 rounded-2xl bg-[#f5ede4] dark:bg-[#1a1a2e] hover:bg-[#e8c4a0] dark:hover:bg-[#3a3a5a] transition">
-                    <span class="text-2xl mb-1">😊</span>
-                    <span class="text-xs text-gray-500 dark:text-gray-300">Happy</span>
+                    <span class="text-2xl mb-1">😊</span><span class="text-xs text-gray-500 dark:text-gray-300">Happy</span>
                 </button>
                 <button onclick="selectMood('sad')" data-mood="sad" class="mood-btn flex flex-col items-center p-3 rounded-2xl bg-[#f5ede4] dark:bg-[#1a1a2e] hover:bg-[#e8c4a0] dark:hover:bg-[#3a3a5a] transition">
-                    <span class="text-2xl mb-1">😔</span>
-                    <span class="text-xs text-gray-500 dark:text-gray-300">Sad</span>
+                    <span class="text-2xl mb-1">😔</span><span class="text-xs text-gray-500 dark:text-gray-300">Sad</span>
                 </button>
                 <button onclick="selectMood('angry')" data-mood="angry" class="mood-btn flex flex-col items-center p-3 rounded-2xl bg-[#f5ede4] dark:bg-[#1a1a2e] hover:bg-[#e8c4a0] dark:hover:bg-[#3a3a5a] transition">
-                    <span class="text-2xl mb-1">😤</span>
-                    <span class="text-xs text-gray-500 dark:text-gray-300">Angry</span>
+                    <span class="text-2xl mb-1">😤</span><span class="text-xs text-gray-500 dark:text-gray-300">Angry</span>
                 </button>
                 <button onclick="selectMood('anxious')" data-mood="anxious" class="mood-btn flex flex-col items-center p-3 rounded-2xl bg-[#f5ede4] dark:bg-[#1a1a2e] hover:bg-[#e8c4a0] dark:hover:bg-[#3a3a5a] transition">
-                    <span class="text-2xl mb-1">😰</span>
-                    <span class="text-xs text-gray-500 dark:text-gray-300">Anxious</span>
+                    <span class="text-2xl mb-1">😰</span><span class="text-xs text-gray-500 dark:text-gray-300">Anxious</span>
                 </button>
                 <button onclick="selectMood('grateful')" data-mood="grateful" class="mood-btn flex flex-col items-center p-3 rounded-2xl bg-[#f5ede4] dark:bg-[#1a1a2e] hover:bg-[#e8c4a0] dark:hover:bg-[#3a3a5a] transition">
-                    <span class="text-2xl mb-1">🙏</span>
-                    <span class="text-xs text-gray-500 dark:text-gray-300">Grateful</span>
+                    <span class="text-2xl mb-1">🙏</span><span class="text-xs text-gray-500 dark:text-gray-300">Grateful</span>
                 </button>
                 <button onclick="selectMood('numb')" data-mood="numb" class="mood-btn flex flex-col items-center p-3 rounded-2xl bg-[#f5ede4] dark:bg-[#1a1a2e] hover:bg-[#e8c4a0] dark:hover:bg-[#3a3a5a] transition">
-                    <span class="text-2xl mb-1">😶</span>
-                    <span class="text-xs text-gray-500 dark:text-gray-300">Numb</span>
+                    <span class="text-2xl mb-1">😶</span><span class="text-xs text-gray-500 dark:text-gray-300">Numb</span>
                 </button>
             </div>
-
             <textarea id="text" rows="4" placeholder="Write freely. No one is watching. No one will judge..."
                 class="w-full bg-[#f5ede4] dark:bg-[#1a1a2e] dark:text-white dark:placeholder-gray-500 border-none outline-none px-4 py-3 rounded-2xl text-sm placeholder-gray-400 focus:ring-2 focus:ring-[#6b3f2a] resize-none mb-4 font-light"></textarea>
-
-            <button onclick="saveEntry()"
-                class="bg-[#6b3f2a] text-white px-8 py-3 rounded-full hover:bg-[#8b5e3c] transition text-sm font-medium">
+            <button onclick="saveEntry()" class="bg-[#6b3f2a] text-white px-8 py-3 rounded-full hover:bg-[#8b5e3c] transition text-sm font-medium">
                 Save this moment →
             </button>
         </div>
 
-        <!-- Exercise + Resources Box -->
+        <!-- Mood Impact + Exercise Box -->
         <div id="exerciseBox" class="hidden bg-[#6b3f2a] rounded-3xl p-8 shadow-sm mb-8">
             <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-2">For you, right now</p>
             <h3 id="exerciseTitle" class="font-playfair text-2xl text-white mb-2"></h3>
-            <p class="text-[#c4956a] text-xs mb-5">Exercise for today — comes back fresh tomorrow</p>
-            <div id="exerciseList" class="space-y-3 mb-6"></div>
+            <p class="text-[#c4956a] text-xs mb-5">Today's exercise — refreshes tomorrow</p>
 
-            <!-- Resources -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
-                <a id="musicLink" href="https://www.youtube.com/results?search_query=music+therapy+for+anxiety" target="_blank"
-                    class="flex items-center gap-3 bg-[#8b5e3c] hover:bg-[#9b6e4c] transition p-4 rounded-2xl">
-                    <span class="text-xl">🎵</span>
-                    <div>
-                        <p class="text-white text-xs font-medium">Music Therapy</p>
-                        <p class="text-[#c4956a] text-xs">Curated for your mood</p>
-                    </div>
-                </a>
-                <a href="https://insighttimer.com" target="_blank"
-                    class="flex items-center gap-3 bg-[#8b5e3c] hover:bg-[#9b6e4c] transition p-4 rounded-2xl">
-                    <span class="text-xl">🧘</span>
-                    <div>
-                        <p class="text-white text-xs font-medium">Guided Meditation</p>
-                        <p class="text-[#c4956a] text-xs">Insight Timer — free sessions</p>
-                    </div>
-                </a>
-                <a href="https://www.healthline.com/health/box-breathing" target="_blank"
-                    class="flex items-center gap-3 bg-[#8b5e3c] hover:bg-[#9b6e4c] transition p-4 rounded-2xl">
-                    <span class="text-xl">🌬️</span>
-                    <div>
-                        <p class="text-white text-xs font-medium">Breathing Exercise</p>
-                        <p class="text-[#c4956a] text-xs">Box breathing technique</p>
-                    </div>
-                </a>
+            <!-- Mood Impact Message -->
+            <div class="bg-[#3d2314] rounded-2xl p-5 mb-6">
+                <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-2">How this emotion affects you</p>
+                <p id="moodImpact" class="text-[#e8c4a0] text-sm font-light leading-relaxed"></p>
             </div>
 
-            <!-- Severity Alert -->
-            <div id="severityAlert" class="hidden bg-[#3d2314] rounded-2xl p-5">
+            <div id="exerciseList" class="space-y-3 mb-6"></div>
+
+            <!-- Single mood-specific external link -->
+            <a id="externalLink" href="#" target="_blank"
+                class="flex items-center gap-3 bg-[#8b5e3c] hover:bg-[#9b6e4c] transition p-4 rounded-2xl mb-6">
+                <span id="externalLinkIcon" class="text-xl">🎵</span>
+                <div>
+                    <p id="externalLinkTitle" class="text-white text-xs font-medium"></p>
+                    <p id="externalLinkSub" class="text-[#c4956a] text-xs"></p>
+                </div>
+            </a>
+
+            <div id="severityAlert" class="hidden bg-[#3d2314] rounded-2xl p-5 mb-6">
                 <p class="text-[#e8c4a0] text-sm font-medium mb-1">💙 You might benefit from professional support</p>
-                <p class="text-[#c4956a] text-xs font-light mb-3">What you're carrying sounds heavy. Speaking with a counselor can help. You don't have to do this alone.</p>
-                <a href="https://www.vandrevalafoundation.com" target="_blank"
-                    class="inline-block text-xs bg-[#6b3f2a] text-white px-4 py-2 rounded-full hover:bg-[#8b5e3c] transition">
+                <p class="text-[#c4956a] text-xs font-light mb-3">What you're carrying sounds heavy. Speaking with a counselor can help.</p>
+                <a href="https://www.vandrevalafoundation.com" target="_blank" class="inline-block text-xs bg-[#6b3f2a] text-white px-4 py-2 rounded-full hover:bg-[#8b5e3c] transition">
                     Find support → Vandrevala Foundation
                 </a>
             </div>
 
             <!-- Feedback -->
-            <div id="feedbackBox" class="mt-6 pt-6 border-t border-[#8b5e3c]">
+            <div class="pt-6 border-t border-[#8b5e3c] mb-6">
                 <p class="text-[#e8c4a0] text-sm mb-3">Did this exercise help you feel better?</p>
-                <div class="flex gap-3">
-                    <button onclick="submitFeedback('yes')" class="feedback-btn bg-[#8b5e3c] hover:bg-green-700 text-white text-sm px-5 py-2 rounded-full transition">
-                        👍 Yes, it helped
-                    </button>
-                    <button onclick="submitFeedback('no')" class="feedback-btn bg-[#8b5e3c] hover:bg-red-800 text-white text-sm px-5 py-2 rounded-full transition">
-                        👎 Not really
-                    </button>
+                <div class="flex gap-3 mb-4">
+                    <button onclick="submitFeedback('yes')" class="feedback-btn bg-[#8b5e3c] hover:bg-green-700 text-white text-sm px-5 py-2 rounded-full transition">👍 Yes</button>
+                    <button onclick="submitFeedback('no')" class="feedback-btn bg-[#8b5e3c] hover:bg-red-800 text-white text-sm px-5 py-2 rounded-full transition">👎 Not really</button>
                 </div>
-                <p id="feedbackResponse" class="hidden text-[#e8c4a0] text-sm mt-3 font-light"></p>
+                <div id="writtenFeedbackBox" class="hidden">
+                    <textarea id="writtenFeedback" rows="2" placeholder="Tell us more — what helped or didn't? (optional)"
+                        class="w-full bg-[#8b5e3c] text-white placeholder-[#c4956a] border-none outline-none px-4 py-3 rounded-2xl text-sm resize-none mb-3"></textarea>
+                    <button onclick="submitWrittenFeedback()" class="text-xs bg-white text-[#6b3f2a] px-5 py-2 rounded-full hover:bg-[#f5ede4] transition">Submit feedback</button>
+                </div>
+                <p id="feedbackResponse" class="hidden text-[#e8c4a0] text-sm font-light"></p>
+            </div>
+
+            <!-- Growth Question -->
+            <div class="pt-6 border-t border-[#8b5e3c]">
+                <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-2">Your growth</p>
+                <p class="text-[#e8c4a0] text-sm mb-4">Who do you want to become after working through this?</p>
+                <textarea id="growthResponse" rows="3" placeholder="Write freely — this is only for you..."
+                    class="w-full bg-[#8b5e3c] text-white placeholder-[#c4956a] border-none outline-none px-4 py-3 rounded-2xl text-sm resize-none mb-3"></textarea>
+                <button onclick="submitGrowth()" class="text-xs bg-white text-[#6b3f2a] px-5 py-2 rounded-full hover:bg-[#f5ede4] transition">Save my intention →</button>
+                <p id="growthSaved" class="hidden text-[#e8c4a0] text-xs mt-2">Saved. Come back tomorrow and see how far you've come.</p>
             </div>
         </div>
 
-        <!-- Weekly Chart -->
+        <!-- Personality Development -->
+        <div class="bg-white dark:bg-[#2a2a4a] rounded-3xl p-8 shadow-sm mb-8">
+            <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-2">Personality development</p>
+            <h3 class="font-playfair text-2xl text-[#3d2314] dark:text-[#f0d9c0] mb-2">Choose your therapy space</h3>
+            <p class="text-sm text-gray-400 dark:text-gray-500 font-light mb-6">Not everyone needs everything. Go where you feel drawn today.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <a href="/therapy-emotional.html" class="flex items-start gap-4 p-5 bg-[#f5ede4] dark:bg-[#1a1a2e] rounded-2xl hover:bg-[#e8d5c4] dark:hover:bg-[#3a3a5a] transition">
+                    <span class="text-3xl">🌧️</span>
+                    <div>
+                        <p class="font-medium text-[#3d2314] dark:text-[#f0d9c0] mb-1">Emotional Release</p>
+                        <p class="text-xs text-gray-400 font-light">For sadness, anger, and numbness</p>
+                    </div>
+                </a>
+                <a href="/therapy-anxiety.html" class="flex items-start gap-4 p-5 bg-[#f5ede4] dark:bg-[#1a1a2e] rounded-2xl hover:bg-[#e8d5c4] dark:hover:bg-[#3a3a5a] transition">
+                    <span class="text-3xl">🌀</span>
+                    <div>
+                        <p class="font-medium text-[#3d2314] dark:text-[#f0d9c0] mb-1">Anxiety & Overthinking</p>
+                        <p class="text-xs text-gray-400 font-light">Calm your mind and stop the loops</p>
+                    </div>
+                </a>
+                <a href="/therapy-confidence.html" class="flex items-start gap-4 p-5 bg-[#f5ede4] dark:bg-[#1a1a2e] rounded-2xl hover:bg-[#e8d5c4] dark:hover:bg-[#3a3a5a] transition">
+                    <span class="text-3xl">💪</span>
+                    <div>
+                        <p class="font-medium text-[#3d2314] dark:text-[#f0d9c0] mb-1">Confidence & Self-Worth</p>
+                        <p class="text-xs text-gray-400 font-light">Build yourself back up</p>
+                    </div>
+                </a>
+                <a href="/therapy-gratitude.html" class="flex items-start gap-4 p-5 bg-[#f5ede4] dark:bg-[#1a1a2e] rounded-2xl hover:bg-[#e8d5c4] dark:hover:bg-[#3a3a5a] transition">
+                    <span class="text-3xl">🙏</span>
+                    <div>
+                        <p class="font-medium text-[#3d2314] dark:text-[#f0d9c0] mb-1">Gratitude & Positivity</p>
+                        <p class="text-xs text-gray-400 font-light">Real gratitude, not toxic positivity</p>
+                    </div>
+                </a>
+            </div>
+            <a href="/peace.html" class="flex items-center gap-4 p-5 bg-[#6b3f2a] rounded-2xl hover:bg-[#8b5e3c] transition">
+                <span class="text-3xl">🌙</span>
+                <div>
+                    <p class="font-medium text-white mb-1">Peace & Rest</p>
+                    <p class="text-xs text-[#c4956a]">Sleeping music, meditation, relief — when you just need to breathe</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Weekly Summary -->
+        <div id="weeklySummaryBox" class="hidden bg-white dark:bg-[#2a2a4a] rounded-3xl p-8 shadow-sm mb-8">
+            <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-2">Weekly insight</p>
+            <h3 class="font-playfair text-2xl text-[#3d2314] dark:text-[#f0d9c0] mb-6">Your week in emotions</h3>
+            <div id="weeklyContent"></div>
+        </div>
+
+        <!-- Mood Chart -->
         <div class="bg-white dark:bg-[#2a2a4a] rounded-3xl p-8 shadow-sm mb-8">
             <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-2">Your patterns</p>
-            <h3 class="font-playfair text-2xl text-[#3d2314] dark:text-[#f0d9c0] mb-6">Weekly mood summary</h3>
+            <h3 class="font-playfair text-2xl text-[#3d2314] dark:text-[#f0d9c0] mb-6">Overall mood summary</h3>
             <canvas id="moodChart" height="120"></canvas>
         </div>
 
         <!-- Past Entries -->
-        <div class="bg-white dark:bg-[#2a2a4a] rounded-3xl p-8 shadow-sm">
+        <div class="bg-white dark:bg-[#2a2a4a] rounded-3xl p-8 shadow-sm mb-8">
             <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-2">Your journal</p>
             <h3 class="font-playfair text-2xl text-[#3d2314] dark:text-[#f0d9c0] mb-6">Past entries</h3>
             <div id="entries" class="space-y-4"></div>
+        </div>
+
+        <!-- Growth Journal -->
+        <div class="bg-white dark:bg-[#2a2a4a] rounded-3xl p-8 shadow-sm">
+            <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-2">Your growth journal</p>
+            <h3 class="font-playfair text-2xl text-[#3d2314] dark:text-[#f0d9c0] mb-2">Who you want to become</h3>
+            <p class="text-sm text-gray-400 font-light mb-6">Every intention you've set. Come back and see how far you've grown.</p>
+            <div id="growthEntries" class="space-y-4"></div>
         </div>
     </div>
 
@@ -149,112 +196,75 @@
         document.getElementById('greeting').textContent = name ? `Hello, ${name}` : '';
 
         let selectedMood = '';
-
-        // Rotating exercises — changes by day of week
+        let lastEntryId = null;
         const dayIndex = new Date().getDay();
-        const exercises = {
+
+        const moodData = {
             happy: {
                 title: "You're glowing today 🌟",
-                sets: [
-                    ["Write down 3 things that made you smile today", "Share your energy — call someone you love", "Channel this into something creative"],
-                    ["Take a walk and notice 5 beautiful things", "Write a gratitude letter to yourself", "Do something kind for someone today"],
-                    ["Dance to your favourite song", "Write about your happiest memory", "Spread joy — compliment 3 people"],
-                    ["Start something you've been putting off", "Cook or eat something you love", "Take photos of things that make you happy"],
-                    ["Journal about what made today good", "Plan something exciting for next week", "Call a friend you haven't spoken to in a while"],
-                    ["Spend time in nature", "Do a creative activity — draw, write, or make something", "Reflect on your growth this month"],
-                    ["Practice random acts of kindness", "Write your goals for the week", "Celebrate a small win from this week"]
-                ],
-                severe: false
+                impact: "Happiness activates the reward centres of your brain, boosting creativity, energy, and connection. When you feel this way, your decisions are clearer and your relationships are stronger. Don't let it pass unnoticed — anchor it.",
+                externalLink: { icon: "🎵", title: "Music to match your joy", sub: "Uplifting music therapy on YouTube", url: "https://www.youtube.com/results?search_query=uplifting+happy+music+therapy" },
+                severe: false,
+                therapyPage: null
             },
             sad: {
                 title: "It's okay to feel this 🌧️",
-                sets: [
-                    ["Put your hand on your heart and breathe slowly for 2 minutes", "Write a letter to yourself with no filter", "Listen to music that matches your mood, then something uplifting"],
-                    ["Wrap yourself in a blanket and allow yourself to just feel", "Watch something comforting — a favourite show or film", "Write 3 things that are still okay right now"],
-                    ["Go outside for 10 minutes, even just to sit", "Drink warm tea and sit in silence for 5 minutes", "Text one person who makes you feel safe"],
-                    ["Write about what's hurting without holding back", "Do gentle stretching for 10 minutes", "Look at photos from a happy time"],
-                    ["Take a warm shower and imagine washing the heaviness away", "Light a candle and journal by its light", "Allow yourself one good cry — it releases stored pain"],
-                    ["Make your bed and tidy one small space", "Cook or order something comforting to eat", "Read something that makes you feel understood"],
-                    ["Write 5 things you are still grateful for despite the sadness", "Take a slow walk without your phone", "Tell someone how you're really feeling"]
-                ],
-                severe: true
+                impact: "Sadness slows you down on purpose — it's your mind asking you to stop, turn inward, and process something important. Left unaddressed, chronic sadness can affect sleep, motivation, and physical health. But felt and expressed, it becomes wisdom.",
+                externalLink: { icon: "🎵", title: "Music therapy for sadness", sub: "Healing music on YouTube", url: "https://www.youtube.com/results?search_query=music+therapy+for+sadness+healing" },
+                severe: true,
+                therapyPage: { label: "Go to Emotional Release →", url: "/therapy-emotional.html" }
             },
             angry: {
                 title: "Your anger has a message 🔥",
-                sets: [
-                    ["Write everything you're angry about — then tear the paper", "Do 20 jumping jacks or walk fast for 5 minutes", "Ask yourself: what boundary was crossed?"],
-                    ["Breathe in for 4 counts, hold 4, out for 6 — repeat 5 times", "Write a letter to whoever upset you — don't send it", "Punch a pillow or squeeze something tight"],
-                    ["Go for a fast walk or run and let the anger move through your body", "Write: 'I am angry because...' until you run out of words", "Splash cold water on your face"],
-                    ["Name the feeling under the anger — fear? hurt? shame?", "Do 10 minutes of any physical exercise", "Talk to someone you trust about what happened"],
-                    ["Write the story of what happened from your perspective", "Draw or scribble with intense colours", "Wait 10 minutes before responding to the person who upset you"],
-                    ["Practice the STOP technique: Stop, Take a breath, Observe, Proceed", "Journal about what you needed that you didn't get", "Do something completely unrelated to distract your mind"],
-                    ["Write what you would say if there were no consequences", "Exercise hard for 15 minutes", "Reflect: is this anger protecting something important?"]
-                ],
-                severe: false
+                impact: "Anger is one of the most misunderstood emotions. It's actually a boundary signal — it tells you something important to you has been violated. Suppressed anger becomes resentment, anxiety, or depression. Expressed safely, it becomes clarity and action.",
+                externalLink: { icon: "🌬️", title: "Box breathing for anger", sub: "Calm your nervous system", url: "https://www.healthline.com/health/box-breathing" },
+                severe: false,
+                therapyPage: { label: "Go to Emotional Release →", url: "/therapy-emotional.html" }
             },
             anxious: {
                 title: "Your mind is trying to protect you 🌿",
-                sets: [
-                    ["Try the 5-4-3-2-1 grounding technique", "Name 5 things you can see right now", "Place both feet flat on the floor and feel the ground"],
-                    ["Breathe in for 4, hold for 7, out for 8 — the 4-7-8 technique", "Write every worry you have right now — get it out of your head", "Hold something cold — ice, a cold drink — and focus on the sensation"],
-                    ["Go for a slow walk and focus only on your surroundings", "Write: 'The worst that could happen is...' then 'I could handle this by...'", "Progressive muscle relaxation — tense and release each body part"],
-                    ["Make a list of what you can control and what you cannot", "Drink a glass of water slowly and mindfully", "Text or call one person who makes you feel calm"],
-                    ["Put on calming music and lie down for 10 minutes", "Write 3 times you felt anxious before and got through it", "Do a body scan — where is the anxiety sitting in your body?"],
-                    ["Name the anxious thought: 'I notice I am having the thought that...'", "Step outside for fresh air even for 2 minutes", "Write about the best case scenario instead of the worst"],
-                    ["Practice box breathing: in 4, hold 4, out 4, hold 4", "Do something with your hands — draw, fold paper, cook", "Remind yourself: this feeling will pass, it always does"]
-                ],
-                severe: true
+                impact: "Anxiety keeps your nervous system in high alert — your heart beats faster, your thoughts loop, your body prepares for danger. Over time, this exhausts your adrenal system and affects concentration, sleep, and relationships. Grounding brings you back to the present, where you're actually safe.",
+                externalLink: { icon: "🧘", title: "Guided meditation for anxiety", sub: "Calm your mind on YouTube", url: "https://www.youtube.com/results?search_query=guided+meditation+for+anxiety+relief" },
+                severe: true,
+                therapyPage: { label: "Go to Anxiety & Overthinking →", url: "/therapy-anxiety.html" }
             },
             grateful: {
                 title: "Gratitude is a superpower 🙏",
-                sets: [
-                    ["Write 5 specific things you're grateful for today", "Tell someone you appreciate them", "Sit quietly for 5 minutes and notice what's good"],
-                    ["Write a thank you letter to someone who helped you", "Notice 3 small pleasures today — a smell, taste, or feeling", "Share your gratitude publicly — post or tell someone"],
-                    ["Write about a difficult time that made you stronger", "Do something to give back today", "Journal about someone you're grateful to have in your life"],
-                    ["Write gratitude for your own body and what it does for you", "Notice the ordinary miracles around you today", "Make a gratitude jar — write one thing and put it in"],
-                    ["Write about a mistake you're grateful you made", "Express appreciation to someone who won't expect it", "Journal: how has your life improved in the last year?"],
-                    ["Write 10 small things that went right today", "Take a photo of something beautiful in your everyday life", "Say thank you out loud to yourself"],
-                    ["Write about abundance — what do you have enough of?", "Do a kindness as an expression of your gratitude", "Reflect: what would life be like without one thing you love?"]
-                ],
-                severe: false
+                impact: "Gratitude physically rewires your brain over time. It activates the prefrontal cortex — the part responsible for clear thinking and emotional regulation. People who practice gratitude consistently report better sleep, stronger relationships, and lower anxiety. You're doing something powerful right now.",
+                externalLink: { icon: "🧘", title: "Gratitude meditation", sub: "Deepen your practice on YouTube", url: "https://www.youtube.com/results?search_query=gratitude+meditation+guided" },
+                severe: false,
+                therapyPage: { label: "Go to Gratitude & Positivity →", url: "/therapy-gratitude.html" }
             },
             numb: {
                 title: "Numbness is also a feeling 🫧",
-                sets: [
-                    ["Hold something cold or warm and reconnect with your body", "Put on a show or song from a happier time", "Write: 'I feel nothing because...' and see what comes"],
-                    ["Take a shower and focus entirely on the sensations", "Eat something with strong flavour — spicy, sour, or sweet", "Move your body slowly — stretch or walk"],
-                    ["Talk to someone — anyone — even briefly about anything", "Watch something that usually makes you laugh", "Write 3 things that used to make you feel something"],
-                    ["Go outside and sit in the sun for 10 minutes", "Listen to a song that once meant something to you", "Write a letter to the version of you that felt more"],
-                    ["Do something with your hands — cook, draw, clean", "Watch a comforting film from your childhood", "Allow yourself to want something — what would you choose right now?"],
-                    ["Spend time with an animal if possible", "Write: 'If I could feel anything right now it would be...'", "Do one small act of self care — brush your hair, make tea"],
-                    ["Slowly describe your surroundings in writing — every detail", "Listen to a podcast or audiobook just to have a voice with you", "Text someone you trust that you're feeling disconnected"]
-                ],
-                severe: true
+                impact: "Emotional numbness is your nervous system's emergency brake — it kicks in when you've felt too much for too long. It's not emptiness, it's protection. But staying numb too long disconnects you from joy as well as pain. Gentle reconnection, not force, is what brings you back.",
+                externalLink: { icon: "🌙", title: "Music for emotional healing", sub: "Reconnect gently on YouTube", url: "https://www.youtube.com/results?search_query=music+therapy+emotional+numbness+healing" },
+                severe: true,
+                therapyPage: { label: "Go to Emotional Release →", url: "/therapy-emotional.html" }
             }
         };
 
-        const musicLinks = {
-            happy: "https://www.youtube.com/results?search_query=uplifting+happy+music+therapy",
-            sad: "https://www.youtube.com/results?search_query=music+therapy+for+sadness+healing",
-            angry: "https://www.youtube.com/results?search_query=music+therapy+for+anger+calm",
-            anxious: "https://www.youtube.com/results?search_query=music+therapy+for+anxiety+calm",
-            grateful: "https://www.youtube.com/results?search_query=gratitude+meditation+music",
-            numb: "https://www.youtube.com/results?search_query=music+therapy+for+emotional+numbness"
+        const exercises = {
+            happy: { sets: [["Write down 3 things that made you smile today","Share your energy — call someone you love","Channel this into something creative"],["Take a walk and notice 5 beautiful things","Write a gratitude letter to yourself","Do something kind for someone today"],["Dance to your favourite song","Write about your happiest memory","Spread joy — compliment 3 people"],["Start something you've been putting off","Cook or eat something you love","Take photos of things that make you happy"],["Journal about what made today good","Plan something exciting for next week","Call a friend you haven't spoken to in a while"],["Spend time in nature","Do a creative activity","Reflect on your growth this month"],["Practice random acts of kindness","Write your goals for the week","Celebrate a small win"]] },
+            sad: { sets: [["Put your hand on your heart and breathe slowly for 2 minutes","Write a letter to yourself with no filter","Listen to music that matches your mood then something uplifting"],["Wrap yourself in a blanket and allow yourself to feel","Watch something comforting","Write 3 things that are still okay right now"],["Go outside for 10 minutes even just to sit","Drink warm tea and sit in silence","Text one person who makes you feel safe"],["Write about what's hurting without holding back","Do gentle stretching for 10 minutes","Look at photos from a happy time"],["Take a warm shower","Light a candle and journal","Allow yourself one good cry"],["Make your bed and tidy one small space","Cook something comforting","Read something that makes you feel understood"],["Write 5 things you are still grateful for","Take a slow walk without your phone","Tell someone how you're really feeling"]] },
+            angry: { sets: [["Write everything you're angry about then tear the paper","Do 20 jumping jacks","Ask yourself: what boundary was crossed?"],["Breathe in 4 counts hold 4 out 6 repeat 5 times","Write a letter to whoever upset you don't send it","Splash cold water on your face"],["Go for a fast walk","Write I am angry because until you run out of words","Punch a pillow"],["Name the feeling under the anger fear hurt shame","Do 10 minutes exercise","Talk to someone you trust"],["Write the story from your perspective","Draw with intense colours","Wait 10 minutes before responding"],["Practice STOP: Stop Take a breath Observe Proceed","Journal about what you needed","Do something completely unrelated"],["Write what you would say if there were no consequences","Exercise hard for 15 minutes","Reflect: is this anger protecting something important?"]] },
+            anxious: { sets: [["Try the 5-4-3-2-1 grounding technique","Name 5 things you can see right now","Place both feet flat on the floor"],["Breathe in 4 hold 7 out 8","Write every worry onto paper","Hold something cold and focus on sensation"],["Go for a slow walk focus on surroundings","Write the worst case then how you would handle it","Progressive muscle relaxation"],["List what you can control and what you cannot","Drink water slowly mindfully","Text someone who makes you feel calm"],["Put on calming music lie down 10 minutes","Write 3 times you got through anxiety before","Body scan where is the anxiety sitting"],["Name the anxious thought I notice I am having the thought that","Step outside for fresh air","Write about the best case instead"],["Box breathing in 4 hold 4 out 4 hold 4","Do something with your hands","Remind yourself this feeling will pass"]] },
+            grateful: { sets: [["Write 5 specific things you are grateful for","Tell someone you appreciate them","Sit quietly 5 minutes and notice what is good"],["Write a thank you letter to someone who helped you","Notice 3 small pleasures today","Share your gratitude"],["Write about a difficult time that made you stronger","Do something to give back","Journal about someone you are grateful to have"],["Write gratitude for your own body","Notice ordinary miracles","Make a gratitude jar"],["Write about a mistake you are grateful you made","Express appreciation to someone who won't expect it","Journal how has your life improved this year"],["Write 10 small things that went right today","Take a photo of something beautiful","Say thank you out loud to yourself"],["Write about abundance what do you have enough of","Do a kindness as an expression of gratitude","Reflect what would life be like without one thing you love"]] },
+            numb: { sets: [["Hold something cold or warm reconnect with your body","Put on a show from a happier time","Write I feel nothing because"],["Take a shower focus on sensations","Eat something with strong flavour","Move your body slowly"],["Talk to someone anyone even briefly","Watch something that usually makes you laugh","Write 3 things that used to make you feel something"],["Go outside sit in the sun","Listen to a song that once meant something","Write a letter to the version of you that felt more"],["Do something with your hands","Watch a comforting film from childhood","Allow yourself to want something"],["Spend time with an animal","Write if I could feel anything right now it would be","Do one small act of self care"],["Slowly describe your surroundings in writing","Listen to a podcast just to have a voice with you","Text someone you trust that you feel disconnected"]] }
+        };
+
+        const weeklyAdvice = {
+            happy: { message: "You've had a genuinely good week. Keep doing what's working — and share your energy with someone who needs it.", strong_exercise: "Write down exactly what made this week good. Recreate those conditions intentionally next week.", redirect: false },
+            sad: { message: "Sadness has been your dominant emotion this week. That's important information — not a problem, but a signal that something needs attention.", strong_exercise: "Write a letter to the source of your sadness. Say everything you haven't been able to say out loud. Read it back to yourself.", redirect: true },
+            angry: { message: "Anger has shown up most this week. Something important to you is being threatened or disrespected repeatedly.", strong_exercise: "Write every boundary you feel has been crossed this week. For each one, write one action you can take to protect yourself.", redirect: false },
+            anxious: { message: "Anxiety has been your most frequent companion this week. Your nervous system is working overtime and needs consistent grounding.", strong_exercise: "Every morning this week, write 3 things you can control today. This trains your brain away from worst-case thinking.", redirect: true },
+            grateful: { message: "Gratitude has led your week. This is one of the most powerful emotional states for long-term wellbeing.", strong_exercise: "Write a letter to your future self describing the mindset you've built this week — so future-you can return to it.", redirect: false },
+            numb: { message: "Numbness has dominated this week. This often means you have been carrying too much for too long without release.", strong_exercise: "Each day this week, do one small thing purely for pleasure — no productivity, no purpose. Just because you want to.", redirect: true }
         };
 
         const feedbackResponses = {
-            yes: [
-                "That's wonderful. Keep showing up for yourself like this.",
-                "Every small step counts. You're doing better than you think.",
-                "Growth happens in these quiet moments. Well done.",
-                "You showed up today. That's everything."
-            ],
-            no: [
-                "That's okay. Not every tool works every time. Try the resources above.",
-                "Some days are harder. Be gentle with yourself today.",
-                "It's okay if it didn't help. Rest is also healing.",
-                "Tomorrow offers a fresh start. You're not alone in this."
-            ]
+            yes: ["That's wonderful. Keep showing up for yourself like this.", "Every small step counts. You're doing better than you think.", "Growth happens in these quiet moments. Well done.", "You showed up today. That's everything."],
+            no: ["That's okay. Not every tool works every time. Try the therapy spaces below.", "Some days are harder. Be gentle with yourself today.", "It's okay if it didn't help. Rest is also healing.", "Tomorrow offers a fresh start. You're not alone in this."]
         };
 
         function selectMood(mood) {
@@ -272,60 +282,145 @@
             selected.querySelector('span:last-child').classList.remove('text-gray-500', 'dark:text-gray-300');
         }
 
-        function showExercises(mood) {
-            const data = exercises[mood];
-            if (!data) return;
-            const todayExercises = data.sets[dayIndex];
+        function showExercises(mood, entryId) {
+            const data = moodData[mood];
+            const ex = exercises[mood];
+            if (!data || !ex) return;
+            lastEntryId = entryId;
+
             document.getElementById('exerciseTitle').textContent = data.title;
+            document.getElementById('moodImpact').textContent = data.impact;
+
+            const todayExercises = ex.sets[dayIndex];
             document.getElementById('exerciseList').innerHTML = todayExercises.map(e => `
                 <div class="flex items-start gap-3">
                     <span class="text-[#c4956a] mt-0.5">→</span>
                     <p class="text-[#e8c4a0] text-sm font-light">${e}</p>
                 </div>
             `).join('');
-            document.getElementById('musicLink').href = musicLinks[mood];
-            if (data.severe) {
-                document.getElementById('severityAlert').classList.remove('hidden');
-            } else {
-                document.getElementById('severityAlert').classList.add('hidden');
+
+            const link = data.externalLink;
+            document.getElementById('externalLink').href = link.url;
+            document.getElementById('externalLinkIcon').textContent = link.icon;
+            document.getElementById('externalLinkTitle').textContent = link.title;
+            document.getElementById('externalLinkSub').textContent = link.sub;
+
+            document.getElementById('severityAlert').classList.toggle('hidden', !data.severe);
+
+            if (data.therapyPage) {
+                let existing = document.getElementById('therapyRedirect');
+                if (!existing) {
+                    existing = document.createElement('div');
+                    existing.id = 'therapyRedirect';
+                    existing.className = 'mt-4';
+                    document.getElementById('severityAlert').after(existing);
+                }
+                existing.innerHTML = `<a href="${data.therapyPage.url}" class="inline-block text-xs bg-white text-[#6b3f2a] px-5 py-2 rounded-full hover:bg-[#f5ede4] transition">${data.therapyPage.label}</a>`;
             }
+
             document.getElementById('feedbackResponse').classList.add('hidden');
-            document.getElementById('feedbackResponse').textContent = '';
+            document.getElementById('writtenFeedbackBox').classList.add('hidden');
+            document.getElementById('writtenFeedback').value = '';
+            document.getElementById('growthResponse').value = '';
+            document.getElementById('growthSaved').classList.add('hidden');
             document.querySelectorAll('.feedback-btn').forEach(b => b.disabled = false);
             document.getElementById('exerciseBox').classList.remove('hidden');
             document.getElementById('exerciseBox').scrollIntoView({ behavior: 'smooth' });
         }
 
         function submitFeedback(type) {
-            const responses = feedbackResponses[type];
-            const response = responses[Math.floor(Math.random() * responses.length)];
-            const el = document.getElementById('feedbackResponse');
-            el.textContent = response;
-            el.classList.remove('hidden');
+            const response = feedbackResponses[type][Math.floor(Math.random() * feedbackResponses[type].length)];
+            document.getElementById('feedbackResponse').textContent = response;
+            document.getElementById('feedbackResponse').classList.remove('hidden');
+            document.getElementById('writtenFeedbackBox').classList.remove('hidden');
             document.querySelectorAll('.feedback-btn').forEach(b => b.disabled = true);
+            fetch('/api/entries/feedback', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'authorization': token },
+                body: JSON.stringify({ entry_id: lastEntryId, rating: type, mood: selectedMood })
+            });
+        }
+
+        function submitWrittenFeedback() {
+            const text = document.getElementById('writtenFeedback').value;
+            if (!text) return;
+            fetch('/api/entries/feedback', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'authorization': token },
+                body: JSON.stringify({ entry_id: lastEntryId, rating: 'written', written_feedback: text, mood: selectedMood })
+            });
+            document.getElementById('writtenFeedbackBox').classList.add('hidden');
+            document.getElementById('feedbackResponse').textContent = "Thank you. Your feedback helps us improve.";
+        }
+
+        function submitGrowth() {
+            const response = document.getElementById('growthResponse').value;
+            if (!response) return;
+            fetch('/api/entries/growth', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'authorization': token },
+                body: JSON.stringify({ mood: selectedMood, response })
+            });
+            document.getElementById('growthSaved').classList.remove('hidden');
+            document.getElementById('growthResponse').value = '';
+            loadGrowthEntries();
         }
 
         async function saveEntry() {
             if (!selectedMood) return alert('Please select how you are feeling');
             const text = document.getElementById('text').value;
             if (!text) return alert('Please write something');
-
             const res = await fetch('/api/entries', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'authorization': token },
                 body: JSON.stringify({ mood: selectedMood, text })
             });
-
             if (res.ok) {
+                const data = await res.json();
                 document.getElementById('text').value = '';
-                showExercises(selectedMood);
+                showExercises(selectedMood, data.id);
                 loadEntries();
                 loadChart();
+                loadWeeklySummary();
             }
         }
 
+        async function loadWeeklySummary() {
+            const countRes = await fetch('/api/entries/count', { headers: { 'authorization': token } });
+            const countData = await countRes.json();
+            if (countData.total < 7) return;
+            const res = await fetch('/api/entries/weekly', { headers: { 'authorization': token } });
+            const data = await res.json();
+            if (!data || data.length === 0) return;
+            const dominant = data[0];
+            const advice = weeklyAdvice[dominant.mood];
+            if (!advice) return;
+            const moodEmoji = { happy:'😊', sad:'😔', angry:'😤', anxious:'😰', grateful:'🙏', numb:'😶' };
+            document.getElementById('weeklyContent').innerHTML = `
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-4xl">${moodEmoji[dominant.mood] || '💭'}</span>
+                    <div>
+                        <p class="text-sm text-gray-400 dark:text-gray-500">This week's dominant mood</p>
+                        <p class="font-playfair text-2xl text-[#3d2314] dark:text-[#f0d9c0] capitalize">${dominant.mood} — ${dominant.count} times</p>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-600 dark:text-gray-300 font-light mb-5 leading-relaxed">${advice.message}</p>
+                <div class="bg-[#f5ede4] dark:bg-[#1a1a2e] rounded-2xl p-5 mb-5">
+                    <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-2">Strong exercise for this week</p>
+                    <p class="text-sm text-gray-700 dark:text-gray-300 font-light leading-relaxed">${advice.strong_exercise}</p>
+                </div>
+                ${advice.redirect ? `
+                <div class="bg-[#fff0f0] dark:bg-[#3d2314] rounded-2xl p-5">
+                    <p class="text-rose-700 dark:text-[#e8c4a0] text-sm font-medium mb-1">💙 This pattern has continued for a week</p>
+                    <p class="text-rose-500 dark:text-[#c4956a] text-xs font-light mb-3">When the same heavy emotion dominates your week, professional support can help you break the cycle.</p>
+                    <a href="https://www.vandrevalafoundation.com" target="_blank" class="inline-block text-xs bg-[#6b3f2a] text-white px-4 py-2 rounded-full hover:bg-[#8b5e3c] transition">Find professional support →</a>
+                </div>` : ''}
+            `;
+            document.getElementById('weeklySummaryBox').classList.remove('hidden');
+        }
+
         async function loadEntries() {
-            const res = await fetch('/api/entries', { headers: { 'authorization': token } });
+            const res = await fetch('/api/entries/full', { headers: { 'authorization': token } });
             const entries = await res.json();
             const moodEmoji = { happy:'😊', sad:'😔', angry:'😤', anxious:'😰', grateful:'🙏', numb:'😶' };
             document.getElementById('entries').innerHTML = entries.length === 0
@@ -341,6 +436,23 @@
                 `).join('');
         }
 
+        async function loadGrowthEntries() {
+            const res = await fetch('/api/entries/growth', { headers: { 'authorization': token } });
+            const entries = await res.json();
+            const moodEmoji = { happy:'😊', sad:'😔', angry:'😤', anxious:'😰', grateful:'🙏', numb:'😶' };
+            document.getElementById('growthEntries').innerHTML = entries.length === 0
+                ? '<p class="text-gray-400 dark:text-gray-500 text-sm font-light">Your growth journal is empty. Set your first intention after your next entry.</p>'
+                : entries.map(e => `
+                    <div class="border border-[#f5ede4] dark:border-[#3a3a5a] p-5 rounded-2xl">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-medium text-[#6b3f2a] dark:text-[#e8c4a0]">${moodEmoji[e.mood] || '💭'} After feeling ${e.mood}</span>
+                            <span class="text-xs text-gray-400 dark:text-gray-500">${new Date(e.created_at).toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' })}</span>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 font-light leading-relaxed italic">"${e.response}"</p>
+                    </div>
+                `).join('');
+        }
+
         async function loadChart() {
             const res = await fetch('/api/entries/summary', { headers: { 'authorization': token } });
             const data = await res.json();
@@ -351,26 +463,13 @@
                 type: 'bar',
                 data: {
                     labels: data.map(d => d.mood),
-                    datasets: [{
-                        label: 'Times logged',
-                        data: data.map(d => d.count),
-                        backgroundColor: '#c4956a',
-                        borderRadius: 8,
-                        borderSkipped: false
-                    }]
+                    datasets: [{ data: data.map(d => d.count), backgroundColor: '#c4956a', borderRadius: 8, borderSkipped: false }]
                 },
                 options: {
                     plugins: { legend: { display: false } },
                     scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: { stepSize: 1, color: isDark ? '#9ca3af' : '#6b7280' },
-                            grid: { display: false }
-                        },
-                        x: {
-                            ticks: { color: isDark ? '#9ca3af' : '#6b7280' },
-                            grid: { display: false }
-                        }
+                        y: { beginAtZero: true, ticks: { stepSize: 1, color: isDark ? '#9ca3af' : '#6b7280' }, grid: { display: false } },
+                        x: { ticks: { color: isDark ? '#9ca3af' : '#6b7280' }, grid: { display: false } }
                     }
                 }
             });
@@ -391,6 +490,8 @@
 
         loadEntries();
         loadChart();
+        loadWeeklySummary();
+        loadGrowthEntries();
     </script>
 </body>
 </html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>See Yourself — Anxiety & Overthinking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap');
+        .font-playfair { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body class="bg-[#fdf6f0] dark:bg-[#1a1a2e] font-inter min-h-screen transition-colors duration-500">
+    <nav class="flex justify-between items-center px-8 py-5 bg-[#fdf6f0]/80 dark:bg-[#1a1a2e]/80 backdrop-blur-md fixed w-full top-0 z-50 border-b border-[#f5ede4] dark:border-[#2a2a4a]">
+        <a href="/entries.html" class="font-playfair text-xl text-[#6b3f2a] dark:text-[#e8c4a0]">← See Yourself</a>
+        <button onclick="toggleTheme()" class="text-lg">🌙</button>
+    </nav>
+
+    <div class="pt-28 px-6 pb-16 max-w-2xl mx-auto">
+        <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-2">Therapy space</p>
+        <h1 class="font-playfair text-4xl text-[#3d2314] dark:text-[#f0d9c0] mb-3">Anxiety & Overthinking</h1>
+        <p class="text-gray-500 dark:text-gray-400 font-light mb-10">Your mind is trying to protect you. But sometimes protection becomes a prison. Let's calm it down together.</p>
+
+        <!-- Anxiety -->
+        <div class="bg-white dark:bg-[#2a2a4a] rounded-3xl p-8 shadow-sm mb-6">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="text-3xl">😰</span>
+                <h2 class="font-playfair text-2xl text-[#3d2314] dark:text-[#f0d9c0]">Anxiety</h2>
+            </div>
+            <p class="text-sm text-gray-500 dark:text-gray-400 font-light mb-5">Anxiety is your nervous system in high alert. The goal is not to eliminate it — it's to tell your body it's safe.</p>
+            <div class="space-y-3 mb-6">
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">5-4-3-2-1 grounding: name 5 things you see, 4 you can touch, 3 you hear, 2 you smell, 1 you taste</p></div>
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Place both feet flat on the floor. Feel the ground holding you. You are safe right now.</p></div>
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Box breathing: inhale 4 counts, hold 4, exhale 4, hold 4 — repeat 4 times</p></div>
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Write every worry out of your head and onto paper — your brain relaxes when thoughts are external</p></div>
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Remind yourself: this feeling will pass. It always has before.</p></div>
+            </div>
+            <a href="https://www.youtube.com/results?search_query=guided+meditation+for+anxiety+relief" target="_blank"
+                class="inline-flex items-center gap-2 bg-[#f5ede4] dark:bg-[#1a1a2e] text-[#6b3f2a] dark:text-[#e8c4a0] px-4 py-2 rounded-full text-xs hover:bg-[#e8d5c4] transition">
+                🧘 Guided meditation for anxiety
+            </a>
+        </div>
+
+        <!-- Overthinking -->
+        <div class="bg-white dark:bg-[#2a2a4a] rounded-3xl p-8 shadow-sm mb-6">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="text-3xl">🌀</span>
+                <h2 class="font-playfair text-2xl text-[#3d2314] dark:text-[#f0d9c0]">How to Stop Overthinking</h2>
+            </div>
+            <p class="text-sm text-gray-500 dark:text-gray-400 font-light mb-5">Overthinking is not a thinking problem — it's an anxiety problem. Your mind loops because it feels unsafe to stop.</p>
+            <div class="space-y-3 mb-6">
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Set a "worry time" — 15 minutes where you're allowed to think about the problem, then stop</p></div>
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Ask: "Is this thought helpful right now or just familiar?" Familiar is not the same as true.</p></div>
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Do something with your hands — cook, clean, draw — your brain cannot deeply overthink while your hands are busy</p></div>
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Write the thought down, then write: "Even if this happens, I will handle it because..."</p></div>
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Notice the thought without engaging: "I'm having the thought that..." — you are not your thoughts</p></div>
+            </div>
+            <a href="https://www.healthline.com/health/box-breathing" target="_blank"
+                class="inline-flex items-center gap-2 bg-[#f5ede4] dark:bg-[#1a1a2e] text-[#6b3f2a] dark:text-[#e8c4a0] px-4 py-2 rounded-full text-xs hover:bg-[#e8d5c4] transition">
+                🌬️ Box breathing technique
+            </a>
+        </div>
+
+        <div class="bg-[#3d2314] rounded-3xl p-8">
+            <p class="text-[#e8c4a0] font-medium mb-2">💙 When anxiety feels unmanageable</p>
+            <p class="text-[#c4956a] text-sm font-light mb-4">If anxiety is affecting your daily life consistently, professional support can give you tools that go much deeper than these exercises.</p>
+            <a href="https://www.vandrevalafoundation.com" target="_blank"
+                class="inline-block bg-[#6b3f2a] text-white px-6 py-3 rounded-full text-sm hover:bg-[#8b5e3c] transition">
+                Find support → Vandrevala Foundation
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+        if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+    </script>
+</body>
+</html>

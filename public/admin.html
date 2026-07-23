@@ -15,7 +15,6 @@
 </head>
 <body class="bg-[#fdf6f0] dark:bg-[#1a1a2e] font-inter min-h-screen transition-colors duration-500">
 
-    <!-- Login Gate -->
     <div id="loginGate" class="min-h-screen flex items-center justify-center px-6">
         <div class="bg-white dark:bg-[#2a2a4a] p-10 rounded-3xl shadow-sm w-full max-w-sm">
             <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-2">Restricted</p>
@@ -23,20 +22,18 @@
             <div id="loginError" class="hidden bg-rose-50 border border-rose-200 text-rose-600 text-xs px-4 py-2 rounded-xl mb-4"></div>
             <input type="password" id="adminPassword" placeholder="Enter admin password"
                 class="w-full bg-[#f5ede4] dark:bg-[#1a1a2e] dark:text-white border-none outline-none px-4 py-3 rounded-xl text-sm mb-4 focus:ring-2 focus:ring-[#6b3f2a]"/>
-            <button onclick="checkPassword()"
-                class="w-full bg-[#6b3f2a] text-white py-3 rounded-full hover:bg-[#8b5e3c] transition text-sm">
-                Enter →
-            </button>
+            <button onclick="checkPassword()" class="w-full bg-[#6b3f2a] text-white py-3 rounded-full hover:bg-[#8b5e3c] transition text-sm">Enter →</button>
         </div>
     </div>
 
     <!-- Edit Modal -->
     <div id="editModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-6">
-        <div class="bg-white dark:bg-[#2a2a4a] p-8 rounded-3xl w-full max-w-lg">
-            <h3 class="font-playfair text-2xl text-[#3d2314] dark:text-[#f0d9c0] mb-6">Edit Entry</h3>
+        <div class="bg-white dark:bg-[#2a2a4a] p-8 rounded-3xl w-full max-w-sm">
+            <h3 class="font-playfair text-2xl text-[#3d2314] dark:text-[#f0d9c0] mb-6">Edit Mood</h3>
+            <p class="text-xs text-gray-400 mb-4">Journal text is private and cannot be edited by admin.</p>
             <input type="hidden" id="editEntryId"/>
             <label class="text-xs uppercase tracking-widest text-gray-400 mb-2 block">Mood</label>
-            <select id="editMood" class="w-full bg-[#f5ede4] dark:bg-[#1a1a2e] dark:text-white border-none outline-none px-4 py-3 rounded-xl text-sm mb-4 focus:ring-2 focus:ring-[#6b3f2a]">
+            <select id="editMood" class="w-full bg-[#f5ede4] dark:bg-[#1a1a2e] dark:text-white border-none outline-none px-4 py-3 rounded-xl text-sm mb-6 focus:ring-2 focus:ring-[#6b3f2a]">
                 <option value="happy">Happy</option>
                 <option value="sad">Sad</option>
                 <option value="angry">Angry</option>
@@ -44,31 +41,18 @@
                 <option value="grateful">Grateful</option>
                 <option value="numb">Numb</option>
             </select>
-            <label class="text-xs uppercase tracking-widest text-gray-400 mb-2 block">Entry Text</label>
-            <textarea id="editText" rows="4"
-                class="w-full bg-[#f5ede4] dark:bg-[#1a1a2e] dark:text-white border-none outline-none px-4 py-3 rounded-xl text-sm mb-6 focus:ring-2 focus:ring-[#6b3f2a] resize-none"></textarea>
             <div class="flex gap-3">
-                <button onclick="saveEdit()"
-                    class="flex-1 bg-[#6b3f2a] text-white py-3 rounded-full hover:bg-[#8b5e3c] transition text-sm">
-                    Save changes
-                </button>
-                <button onclick="closeEdit()"
-                    class="flex-1 bg-[#f5ede4] text-[#6b3f2a] py-3 rounded-full hover:bg-[#e8d5c4] transition text-sm">
-                    Cancel
-                </button>
+                <button onclick="saveEdit()" class="flex-1 bg-[#6b3f2a] text-white py-3 rounded-full hover:bg-[#8b5e3c] transition text-sm">Save</button>
+                <button onclick="closeEdit()" class="flex-1 bg-[#f5ede4] text-[#6b3f2a] py-3 rounded-full transition text-sm">Cancel</button>
             </div>
         </div>
     </div>
 
-    <!-- Admin Panel -->
     <div id="adminPanel" class="hidden">
         <nav class="flex justify-between items-center px-8 py-5 bg-white dark:bg-[#2a2a4a] border-b border-[#f5ede4] dark:border-[#3a3a5a]">
             <h1 class="font-playfair text-xl text-[#6b3f2a] dark:text-[#e8c4a0]">See Yourself — Admin</h1>
             <div class="flex items-center gap-4">
-                <button onclick="exportCSV()"
-                    class="text-sm bg-[#6b3f2a] text-white px-5 py-2 rounded-full hover:bg-[#8b5e3c] transition">
-                    ⬇ Export CSV
-                </button>
+                <button onclick="exportCSV()" class="text-sm bg-[#6b3f2a] text-white px-5 py-2 rounded-full hover:bg-[#8b5e3c] transition">⬇ Export CSV</button>
                 <button onclick="adminLogout()" class="text-sm text-gray-400 hover:text-[#6b3f2a] transition">Exit panel</button>
             </div>
         </nav>
@@ -77,6 +61,15 @@
 
             <!-- Stats -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10" id="statsGrid"></div>
+
+            <!-- Privacy Notice -->
+            <div class="bg-[#f5ede4] dark:bg-[#2a2a4a] border border-[#e8c4a0] dark:border-[#3a3a5a] rounded-2xl p-4 mb-8 flex items-start gap-3">
+                <span class="text-xl">🔒</span>
+                <div>
+                    <p class="text-sm font-medium text-[#6b3f2a] dark:text-[#e8c4a0]">Journal entries are private</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 font-light">Admin can view mood and date only. Journal text is encrypted and private to each user. This is by design.</p>
+                </div>
+            </div>
 
             <!-- Mood Chart -->
             <div class="bg-white dark:bg-[#2a2a4a] rounded-3xl p-8 shadow-sm mb-8">
@@ -89,7 +82,7 @@
             <div class="bg-white dark:bg-[#2a2a4a] rounded-3xl p-8 shadow-sm mb-8">
                 <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-2">Registered users</p>
                 <h2 class="font-playfair text-2xl text-[#3d2314] dark:text-[#f0d9c0] mb-4">All users</h2>
-                <p class="text-xs text-gray-400 mb-6">Click "View entries" to filter entries by that user</p>
+                <p class="text-xs text-gray-400 mb-6">Click "View entries" to filter by user — mood and date only</p>
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm">
                         <thead>
@@ -107,14 +100,13 @@
             </div>
 
             <!-- Entries Table -->
-            <div class="bg-white dark:bg-[#2a2a4a] rounded-3xl p-8 shadow-sm">
+            <div class="bg-white dark:bg-[#2a2a4a] rounded-3xl p-8 shadow-sm mb-8">
                 <div class="flex justify-between items-center mb-2">
                     <p class="text-xs uppercase tracking-widest text-[#c4956a]">Journal entries</p>
-                    <button id="clearFilter" onclick="clearUserFilter()" class="hidden text-xs text-[#6b3f2a] dark:text-[#e8c4a0] hover:underline">
-                        ← Show all entries
-                    </button>
+                    <button id="clearFilter" onclick="clearUserFilter()" class="hidden text-xs text-[#6b3f2a] dark:text-[#e8c4a0] hover:underline">← Show all</button>
                 </div>
-                <h2 id="entriesTitle" class="font-playfair text-2xl text-[#3d2314] dark:text-[#f0d9c0] mb-6">All entries</h2>
+                <h2 id="entriesTitle" class="font-playfair text-2xl text-[#3d2314] dark:text-[#f0d9c0] mb-2">All entries</h2>
+                <p class="text-xs text-gray-400 mb-6">Mood and date only — journal text is private</p>
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm">
                         <thead>
@@ -122,12 +114,51 @@
                                 <th class="pb-3 font-medium">ID</th>
                                 <th class="pb-3 font-medium">User</th>
                                 <th class="pb-3 font-medium">Mood</th>
-                                <th class="pb-3 font-medium">Entry</th>
                                 <th class="pb-3 font-medium">Date</th>
                                 <th class="pb-3 font-medium">Actions</th>
                             </tr>
                         </thead>
                         <tbody id="entriesTable" class="text-gray-600 dark:text-gray-300"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Feedback Table -->
+            <div class="bg-white dark:bg-[#2a2a4a] rounded-3xl p-8 shadow-sm mb-8">
+                <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-2">User feedback</p>
+                <h2 class="font-playfair text-2xl text-[#3d2314] dark:text-[#f0d9c0] mb-6">Exercise feedback</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="text-left text-gray-400 border-b border-[#f5ede4] dark:border-[#3a3a5a]">
+                                <th class="pb-3 font-medium">User</th>
+                                <th class="pb-3 font-medium">Mood</th>
+                                <th class="pb-3 font-medium">Rating</th>
+                                <th class="pb-3 font-medium">Written Feedback</th>
+                                <th class="pb-3 font-medium">Date</th>
+                                <th class="pb-3 font-medium">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="feedbackTable" class="text-gray-600 dark:text-gray-300"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Growth Responses -->
+            <div class="bg-white dark:bg-[#2a2a4a] rounded-3xl p-8 shadow-sm">
+                <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-2">Growth journal</p>
+                <h2 class="font-playfair text-2xl text-[#3d2314] dark:text-[#f0d9c0] mb-2">User growth intentions</h2>
+                <p class="text-xs text-gray-400 mb-6">Who users want to become — anonymous aggregate view</p>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="text-left text-gray-400 border-b border-[#f5ede4] dark:border-[#3a3a5a]">
+                                <th class="pb-3 font-medium">User</th>
+                                <th class="pb-3 font-medium">After mood</th>
+                                <th class="pb-3 font-medium">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="growthTable" class="text-gray-600 dark:text-gray-300"></tbody>
                     </table>
                 </div>
             </div>
@@ -164,6 +195,8 @@
             renderChart(allData.moodCount);
             renderUsers(allData.users);
             renderEntries(allData.entries, allData.users);
+            renderFeedback(allData.feedback);
+            renderGrowth(allData.growth);
         }
 
         function renderStats(data) {
@@ -190,20 +223,9 @@
                 type: 'bar',
                 data: {
                     labels: Object.keys(moodCount),
-                    datasets: [{
-                        data: Object.values(moodCount),
-                        backgroundColor: ['#c4956a','#6b3f2a','#e8c4a0','#8b5e3c','#3d2314','#d4a574'],
-                        borderRadius: 8,
-                        borderSkipped: false
-                    }]
+                    datasets: [{ data: Object.values(moodCount), backgroundColor: ['#c4956a','#6b3f2a','#e8c4a0','#8b5e3c','#3d2314','#d4a574'], borderRadius: 8, borderSkipped: false }]
                 },
-                options: {
-                    plugins: { legend: { display: false } },
-                    scales: {
-                        y: { beginAtZero: true, ticks: { stepSize: 1 }, grid: { display: false } },
-                        x: { grid: { display: false } }
-                    }
-                }
+                options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { stepSize: 1 }, grid: { display: false } }, x: { grid: { display: false } } } }
             });
         }
 
@@ -216,14 +238,8 @@
                     <td class="py-3">${new Date(u.created_at).toLocaleDateString()}</td>
                     <td class="py-3">
                         <div class="flex gap-2">
-                            <button onclick="filterByUser(${u.id}, '${u.name}')"
-                                class="text-xs bg-[#f5ede4] text-[#6b3f2a] px-3 py-1 rounded-full hover:bg-[#e8d5c4] transition">
-                                View entries
-                            </button>
-                            <button onclick="deleteUser(${u.id}, '${u.name}')"
-                                class="text-xs bg-rose-100 text-rose-600 px-3 py-1 rounded-full hover:bg-rose-200 transition">
-                                Delete user
-                            </button>
+                            <button onclick="filterByUser(${u.id}, '${u.name}')" class="text-xs bg-[#f5ede4] text-[#6b3f2a] px-3 py-1 rounded-full hover:bg-[#e8d5c4] transition">View entries</button>
+                            <button onclick="deleteUser(${u.id}, '${u.name}')" class="text-xs bg-rose-100 text-rose-600 px-3 py-1 rounded-full hover:bg-rose-200 transition">Delete user</button>
                         </div>
                     </td>
                 </tr>
@@ -234,28 +250,53 @@
             const userMap = {};
             if (users) users.forEach(u => { userMap[u.id] = u.name; });
             else if (allData) allData.users.forEach(u => { userMap[u.id] = u.name; });
-
             document.getElementById('entriesTable').innerHTML = entries.length === 0
-                ? '<tr><td colspan="6" class="py-6 text-gray-400 text-sm">No entries found.</td></tr>'
+                ? '<tr><td colspan="5" class="py-6 text-gray-400 text-sm">No entries found.</td></tr>'
                 : entries.map(e => `
                     <tr class="border-b border-[#f5ede4] dark:border-[#3a3a5a]">
                         <td class="py-3">${e.id}</td>
                         <td class="py-3">${userMap[e.user_id] || e.user_id}</td>
                         <td class="py-3">${e.mood}</td>
-                        <td class="py-3 max-w-xs truncate">${e.text}</td>
                         <td class="py-3">${new Date(e.created_at).toLocaleDateString()}</td>
                         <td class="py-3">
                             <div class="flex gap-2">
-                                <button onclick="openEdit(${e.id}, '${e.mood}', \`${e.text.replace(/`/g, "'")}\`)"
-                                    class="text-xs bg-[#f5ede4] text-[#6b3f2a] px-3 py-1 rounded-full hover:bg-[#e8d5c4] transition">
-                                    Edit
-                                </button>
-                                <button onclick="deleteEntry(${e.id})"
-                                    class="text-xs bg-rose-100 text-rose-600 px-3 py-1 rounded-full hover:bg-rose-200 transition">
-                                    Delete
-                                </button>
+                                <button onclick="openEdit(${e.id}, '${e.mood}')" class="text-xs bg-[#f5ede4] text-[#6b3f2a] px-3 py-1 rounded-full hover:bg-[#e8d5c4] transition">Edit mood</button>
+                                <button onclick="deleteEntry(${e.id})" class="text-xs bg-rose-100 text-rose-600 px-3 py-1 rounded-full hover:bg-rose-200 transition">Delete</button>
                             </div>
                         </td>
+                    </tr>
+                `).join('');
+        }
+
+        function renderFeedback(feedback) {
+            document.getElementById('feedbackTable').innerHTML = feedback.length === 0
+                ? '<tr><td colspan="6" class="py-6 text-gray-400 text-sm">No feedback yet.</td></tr>'
+                : feedback.map(f => `
+                    <tr class="border-b border-[#f5ede4] dark:border-[#3a3a5a]">
+                        <td class="py-3">${f.user_name}</td>
+                        <td class="py-3">${f.mood || '—'}</td>
+                        <td class="py-3">
+                            <span class="px-2 py-1 rounded-full text-xs ${f.rating === 'yes' ? 'bg-green-100 text-green-700' : f.rating === 'no' ? 'bg-rose-100 text-rose-700' : 'bg-gray-100 text-gray-600'}">
+                                ${f.rating === 'yes' ? '👍 Helped' : f.rating === 'no' ? "👎 Didn't help" : '✍️ Written'}
+                            </span>
+                        </td>
+                        <td class="py-3 max-w-xs text-xs">${f.written_feedback || '—'}</td>
+                        <td class="py-3">${new Date(f.created_at).toLocaleDateString()}</td>
+                        <td class="py-3">
+                            <button onclick="deleteFeedback(${f.id})" class="text-xs bg-rose-100 text-rose-600 px-3 py-1 rounded-full hover:bg-rose-200 transition">Delete</button>
+                        </td>
+                    </tr>
+                `).join('');
+        }
+
+        function renderGrowth(growth) {
+            document.getElementById('growthTable').innerHTML = growth.length === 0
+                ? '<tr><td colspan="3" class="py-6 text-gray-400 text-sm">No growth responses yet.</td></tr>'
+                : growth.map(g => `
+                    <tr class="border-b border-[#f5ede4] dark:border-[#3a3a5a]">
+                        <td class="py-3">${g.user_name}</td>
+                        <td class="py-3">${g.mood}</td>
+                        <td class="py-3">${new Date(g.created_at).toLocaleDateString()}</td>
                     </tr>
                 `).join('');
         }
@@ -273,10 +314,9 @@
             renderEntries(allData.entries, allData.users);
         }
 
-        function openEdit(id, mood, text) {
+        function openEdit(id, mood) {
             document.getElementById('editEntryId').value = id;
             document.getElementById('editMood').value = mood;
-            document.getElementById('editText').value = text;
             document.getElementById('editModal').classList.remove('hidden');
         }
 
@@ -287,32 +327,30 @@
         async function saveEdit() {
             const id = document.getElementById('editEntryId').value;
             const mood = document.getElementById('editMood').value;
-            const text = document.getElementById('editText').value;
             const res = await fetch(`/api/admin/entry/${id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json', 'admin-key': ADMIN_KEY },
-                body: JSON.stringify({ mood, text })
+                body: JSON.stringify({ mood })
             });
             if (res.ok) { closeEdit(); loadAdminData(); }
-            else alert('Failed to update entry');
         }
 
         async function deleteUser(id, name) {
-            if (!confirm(`Delete "${name}" and all their entries? This cannot be undone.`)) return;
-            const res = await fetch(`/api/admin/user/${id}`, {
-                method: 'DELETE', headers: { 'admin-key': ADMIN_KEY }
-            });
+            if (!confirm(`Delete "${name}" and all their data? This cannot be undone.`)) return;
+            const res = await fetch(`/api/admin/user/${id}`, { method: 'DELETE', headers: { 'admin-key': ADMIN_KEY } });
             if (res.ok) loadAdminData();
-            else alert('Failed to delete user');
         }
 
         async function deleteEntry(id) {
-            if (!confirm('Delete this entry? This cannot be undone.')) return;
-            const res = await fetch(`/api/admin/entry/${id}`, {
-                method: 'DELETE', headers: { 'admin-key': ADMIN_KEY }
-            });
+            if (!confirm('Delete this entry?')) return;
+            const res = await fetch(`/api/admin/entry/${id}`, { method: 'DELETE', headers: { 'admin-key': ADMIN_KEY } });
             if (res.ok) loadAdminData();
-            else alert('Failed to delete entry');
+        }
+
+        async function deleteFeedback(id) {
+            if (!confirm('Delete this feedback?')) return;
+            const res = await fetch(`/api/admin/feedback/${id}`, { method: 'DELETE', headers: { 'admin-key': ADMIN_KEY } });
+            if (res.ok) loadAdminData();
         }
 
         function exportCSV() {
@@ -322,7 +360,7 @@
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement('a');
                     a.href = url;
-                    a.download = 'seeyourself-entries.csv';
+                    a.download = 'seeyourself-moods.csv';
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);

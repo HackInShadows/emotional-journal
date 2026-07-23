@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>See Yourself — Emotional Release</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap');
+        .font-playfair { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body class="bg-[#fdf6f0] dark:bg-[#1a1a2e] font-inter min-h-screen transition-colors duration-500">
+    <nav class="flex justify-between items-center px-8 py-5 bg-[#fdf6f0]/80 dark:bg-[#1a1a2e]/80 backdrop-blur-md fixed w-full top-0 z-50 border-b border-[#f5ede4] dark:border-[#2a2a4a]">
+        <a href="/entries.html" class="font-playfair text-xl text-[#6b3f2a] dark:text-[#e8c4a0]">← See Yourself</a>
+        <button onclick="toggleTheme()" class="text-lg">🌙</button>
+    </nav>
+
+    <div class="pt-28 px-6 pb-16 max-w-2xl mx-auto">
+        <p class="text-xs uppercase tracking-widest text-[#c4956a] mb-2">Therapy space</p>
+        <h1 class="font-playfair text-4xl text-[#3d2314] dark:text-[#f0d9c0] mb-3">Emotional Release</h1>
+        <p class="text-gray-500 dark:text-gray-400 font-light mb-10">For when you're carrying sadness, anger, or numbness. This is your space to let it out.</p>
+
+        <!-- Sadness -->
+        <div class="bg-white dark:bg-[#2a2a4a] rounded-3xl p-8 shadow-sm mb-6">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="text-3xl">😔</span>
+                <h2 class="font-playfair text-2xl text-[#3d2314] dark:text-[#f0d9c0]">Sadness</h2>
+            </div>
+            <p class="text-sm text-gray-500 dark:text-gray-400 font-light mb-5">Sadness is not weakness. It is the soul's way of processing loss, disappointment, or unmet needs.</p>
+            <div class="space-y-3 mb-6">
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Write a letter to yourself with no filter — say everything you've been holding</p></div>
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Allow yourself one good cry — it releases stored emotional pain physically</p></div>
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Put your hand on your heart and breathe slowly for 2 minutes</p></div>
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Listen to music that matches your mood first — then gradually shift to something uplifting</p></div>
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Tell someone how you're really feeling — not "I'm fine"</p></div>
+            </div>
+            <a href="https://www.youtube.com/results?search_query=music+therapy+for+sadness+healing" target="_blank"
+                class="inline-flex items-center gap-2 bg-[#f5ede4] dark:bg-[#1a1a2e] text-[#6b3f2a] dark:text-[#e8c4a0] px-4 py-2 rounded-full text-xs hover:bg-[#e8d5c4] transition">
+                🎵 Music therapy for sadness
+            </a>
+        </div>
+
+        <!-- Anger -->
+        <div class="bg-white dark:bg-[#2a2a4a] rounded-3xl p-8 shadow-sm mb-6">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="text-3xl">😤</span>
+                <h2 class="font-playfair text-2xl text-[#3d2314] dark:text-[#f0d9c0]">Anger</h2>
+            </div>
+            <p class="text-sm text-gray-500 dark:text-gray-400 font-light mb-5">Anger always has something underneath it — usually hurt, fear, or a boundary that was crossed. Let's find it.</p>
+            <div class="space-y-3 mb-6">
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Write everything you're angry about without stopping — then tear the paper</p></div>
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Ask yourself: what boundary was crossed? What did I need that I didn't get?</p></div>
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Move your body — run, walk fast, do jumping jacks — let the anger move through you</p></div>
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Breathe in for 4 counts, hold 4, out for 6 — repeat 5 times</p></div>
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Write a letter to whoever hurt you — you don't have to send it</p></div>
+            </div>
+            <a href="https://www.youtube.com/results?search_query=music+therapy+for+anger+release" target="_blank"
+                class="inline-flex items-center gap-2 bg-[#f5ede4] dark:bg-[#1a1a2e] text-[#6b3f2a] dark:text-[#e8c4a0] px-4 py-2 rounded-full text-xs hover:bg-[#e8d5c4] transition">
+                🎵 Music therapy for anger
+            </a>
+        </div>
+
+        <!-- Numbness -->
+        <div class="bg-white dark:bg-[#2a2a4a] rounded-3xl p-8 shadow-sm mb-6">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="text-3xl">😶</span>
+                <h2 class="font-playfair text-2xl text-[#3d2314] dark:text-[#f0d9c0]">Numbness</h2>
+            </div>
+            <p class="text-sm text-gray-500 dark:text-gray-400 font-light mb-5">Numbness is what happens when you've felt too much for too long. It's protection. But you can gently come back.</p>
+            <div class="space-y-3 mb-6">
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Hold something cold or warm and focus entirely on the sensation — reconnect with your body</p></div>
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Write: "I feel nothing because..." and see what comes out</p></div>
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Put on a song that once meant something to you and sit with it</p></div>
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Talk to someone — anyone — even about something small</p></div>
+                <div class="flex gap-3"><span class="text-[#c4956a]">→</span><p class="text-sm text-gray-600 dark:text-gray-300 font-light">Allow yourself to want something today — what would you choose if anything were possible?</p></div>
+            </div>
+            <a href="https://www.youtube.com/results?search_query=music+therapy+emotional+numbness+healing" target="_blank"
+                class="inline-flex items-center gap-2 bg-[#f5ede4] dark:bg-[#1a1a2e] text-[#6b3f2a] dark:text-[#e8c4a0] px-4 py-2 rounded-full text-xs hover:bg-[#e8d5c4] transition">
+                🎵 Music therapy for numbness
+            </a>
+        </div>
+
+        <!-- Professional help -->
+        <div class="bg-[#3d2314] rounded-3xl p-8">
+            <p class="text-[#e8c4a0] font-medium mb-2">💙 When it feels like too much</p>
+            <p class="text-[#c4956a] text-sm font-light mb-4">If these emotions have been with you for more than two weeks, speaking with a professional can help you process them safely.</p>
+            <a href="https://www.vandrevalafoundation.com" target="_blank"
+                class="inline-block bg-[#6b3f2a] text-white px-6 py-3 rounded-full text-sm hover:bg-[#8b5e3c] transition">
+                Find support → Vandrevala Foundation
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+        if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+    </script>
+</body>
+</html>
