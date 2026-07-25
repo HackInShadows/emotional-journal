@@ -13,14 +13,17 @@ function verifyAdmin(req, res, next) {
 
 router.get('/data', verifyAdmin, (req, res) => {
     db.query('SELECT id, name, email, created_at FROM users', (err, users) => {
-        if (err) return res.status(500).json({ error: 'Failed' });
-        // Admin sees mood and date ONLY — no journal text
+        if (err) { console.log('Users error:', err); return res.status(500).json({ error: 'Failed on users' }); }
+        
         db.query('SELECT id, user_id, mood, created_at FROM entries ORDER BY created_at DESC', (err2, entries) => {
-            if (err2) return res.status(500).json({ error: 'Failed' });
-            db.query(`SELECT f.id, f.user_id, f.mood, f.rating, f.written_feedback, f.created_at, u.name as user_name FROM feedback f JOIN users u ON f.user_id = u.id ORDER BY f.created_at DESC`, (err3, feedback) => {
-                if (err3) return res.status(500).json({ error: 'Failed' });
-                db.query(`SELECT g.id, g.user_id, g.mood, g.created_at, u.name as user_name FROM growth_responses g JOIN users u ON g.user_id = u.id ORDER BY g.created_at DESC`, (err4, growth) => {
-                    if (err4) return res.status(500).json({ error: 'Failed' });
+            if (err2) { console.log('Entries error:', err2); return res.status(500).json({ error: 'Failed on entries' }); }
+            
+           db.query('SELECT f.id, f.user_id, f.mood, f.rating, f.written_feedback, f.created_at, COALESCE(u.name, "Deleted User") as user_name FROM feedback f LEFT JOIN users u ON f.user_id = u.id ORDER BY f.created_at DESC', (err3, feedback) => {
+                if (err3) { console.log('Feedback error:', err3); return res.status(500).json({ error: 'Failed on feedback' }); }
+                
+                db.query('SELECT g.id, g.user_id, g.mood, g.created_at, COALESCE(u.name, "Deleted User") as user_name FROM growth_responses g LEFT JOIN users u ON g.user_id = u.id ORDER BY g.created_at DESC', (err4, growth) => {
+                    if (err4) { console.log('Growth error:', err4); return res.status(500).json({ error: 'Failed on growth' }); }
+                    
                     const moodCount = {};
                     entries.forEach(e => { moodCount[e.mood] = (moodCount[e.mood] || 0) + 1; });
                     const topMood = Object.keys(moodCount).sort((a, b) => moodCount[b] - moodCount[a])[0] || 'None';
