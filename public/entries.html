@@ -327,8 +327,10 @@
             document.getElementById('exerciseBox').classList.remove('hidden');
             document.getElementById('exerciseBox').scrollIntoView({ behavior: 'smooth' });
         }
+                let lastRating = '';
 
         function submitFeedback(type) {
+            lastRating = type;
             const response = feedbackResponses[type][Math.floor(Math.random() * feedbackResponses[type].length)];
             document.getElementById('feedbackResponse').textContent = response;
             document.getElementById('feedbackResponse').classList.remove('hidden');
@@ -347,12 +349,11 @@
             fetch('/api/entries/feedback', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'authorization': token },
-                body: JSON.stringify({ entry_id: lastEntryId, rating: 'written', written_feedback: text, mood: selectedMood })
+                body: JSON.stringify({ entry_id: lastEntryId, rating: lastRating, written_feedback: text, mood: selectedMood })
             });
             document.getElementById('writtenFeedbackBox').classList.add('hidden');
             document.getElementById('feedbackResponse').textContent = "Thank you. Your feedback helps us improve.";
         }
-
         function submitGrowth() {
             const response = document.getElementById('growthResponse').value;
             if (!response) return;

@@ -76,10 +76,14 @@ router.get('/count', verifyToken, (req, res) => {
 
 router.post('/feedback', verifyToken, (req, res) => {
     const { entry_id, rating, written_feedback, mood } = req.body;
+    console.log('Feedback received:', { entry_id, rating, written_feedback, mood });
     db.query('INSERT INTO feedback (user_id, entry_id, rating, written_feedback, mood) VALUES (?, ?, ?, ?, ?)',
         [req.userId, entry_id || null, rating, written_feedback || null, mood || null],
         (err) => {
-            if (err) return res.status(500).json({ error: 'Failed' });
+            if (err) {
+                console.log('Feedback DB error:', err);
+                return res.status(500).json({ error: 'Failed' });
+            }
             res.json({ message: 'Feedback saved' });
         }
     );
