@@ -89,6 +89,17 @@ router.post('/feedback', verifyToken, (req, res) => {
     );
 });
 
+router.patch('/feedback/written', verifyToken, (req, res) => {
+    const { entry_id, written_feedback } = req.body;
+    db.query(
+        'UPDATE feedback SET written_feedback = ? WHERE user_id = ? AND entry_id <=> ? ORDER BY id DESC LIMIT 1',
+        [written_feedback, req.userId, entry_id || null],
+        (err) => {
+            if (err) return res.status(500).json({ error: 'Failed' });
+            res.json({ message: 'Updated' });
+        }
+    );
+});
 router.post('/growth', verifyToken, (req, res) => {
     const { mood, response } = req.body;
     db.query('INSERT INTO growth_responses (user_id, mood, response) VALUES (?, ?, ?)',

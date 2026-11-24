@@ -344,16 +344,16 @@
         }
 
         function submitWrittenFeedback() {
-            const text = document.getElementById('writtenFeedback').value;
-            if (!text) return;
-            fetch('/api/entries/feedback', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'authorization': token },
-                body: JSON.stringify({ entry_id: lastEntryId, rating: lastRating, written_feedback: text, mood: selectedMood })
-            });
-            document.getElementById('writtenFeedbackBox').classList.add('hidden');
-            document.getElementById('feedbackResponse').textContent = "Thank you. Your feedback helps us improve.";
-        }
+    const text = document.getElementById('writtenFeedback').value;
+    if (!text) return;
+    fetch('/api/entries/feedback/written', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', 'authorization': token },
+        body: JSON.stringify({ entry_id: lastEntryId, written_feedback: text })
+    });
+    document.getElementById('writtenFeedbackBox').classList.add('hidden');
+    document.getElementById('feedbackResponse').textContent = "Thank you. Your feedback helps us improve.";
+}
         function submitGrowth() {
             const response = document.getElementById('growthResponse').value;
             if (!response) return;
